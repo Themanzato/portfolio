@@ -2,10 +2,8 @@
 
 <div align="center">
   <img alt="Demo" src="./demo/demo.webp" />
-  <img alt="PageSpeed Score" src="./demo/pagespeed-score.png" />
 </div>
 
-Portfolio personal moderno y optimizado desarrollado con **Astro**, **React** y **Tailwind CSS**. Diseñado para mostrar proyectos, experiencia profesional y habilidades técnicas de manera elegante y performante.
 
 ## ✨ Características
 
