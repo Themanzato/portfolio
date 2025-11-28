@@ -1,0 +1,119 @@
+---
+import SparklesCore from "../components/SparklesCore.tsx";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Mario Alberto Arroyo Utrera - Ingeniero en Sistemas Computacionales especializado en desarrollo web y móvil. Flutter, React, PHP, Node.js, AWS." />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <title>{title}</title>
+  </head>
+
+  <body
+    class="cosmic-bg leading-relaxed text-slate-200 tracking-wide antialiased selection:bg-violet-500/40 selection:text-white z-10 relative overflow-x-hidden"
+  >
+    <!-- Static nebula effects (no animation for performance) -->
+    <div class="nebula-container fixed inset-0 z-0 pointer-events-none" aria-hidden="true">
+      <div class="nebula nebula-1"></div>
+      <div class="nebula nebula-2"></div>
+    </div>
+
+    <!-- Optimized stars layer - reduced density -->
+    <SparklesCore
+      client:idle
+      id="tsparticlesfullpage"
+      background="transparent"
+      minSize={0.3}
+      maxSize={1.2}
+      opacity={0.5}
+      particleDensity={40}
+      className="w-full h-full fixed z-0"
+      particleColor="#a5b4fc"
+    />
+
+    <slot />
+    <script src="../scripts/main.ts"></script>
+  </body>
+
+  <style is:global>
+    * {
+      /* Optimize rendering */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      font-family: 'Space Mono', monospace;
+      background: #030308;
+      font-size: 1.125rem;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .cosmic-bg {
+      background: #030308;
+      min-height: 100vh;
+    }
+
+    /* Static nebula effects - no animations */
+    .nebula-container {
+      will-change: auto;
+    }
+
+    .nebula {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      will-change: auto;
+    }
+
+    .nebula-1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+      top: -150px;
+      right: -100px;
+    }
+
+    .nebula-2 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+      bottom: -200px;
+      left: -150px;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #030308;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(139, 92, 246, 0.4);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(139, 92, 246, 0.6);
+    }
+  </style>
+</html>
