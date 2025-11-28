@@ -1,50 +1,124 @@
-<h2 align="center">
-  <p>Portfolio Personal - Manzato</p>
-  <p>Desarrollado con Astro, React y Tailwind CSS</p>
-</h2>
+# 🚀 Portfolio Personal - Manzato
 
 <div align="center">
   <img alt="Demo" src="./demo/demo.webp" />
-  <img alt="Demo" src="./demo/pagespeed-score.png" />
+  <img alt="PageSpeed Score" src="./demo/pagespeed-score.png" />
 </div>
 
-<p align="center">
-Code is licensed under MIT, words and images are licensed under <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/'>CC BY-NC-SA 4.0</a>.
-</p>
+Portfolio personal moderno y optimizado desarrollado con **Astro**, **React** y **Tailwind CSS**. Diseñado para mostrar proyectos, experiencia profesional y habilidades técnicas de manera elegante y performante.
 
-## 🚀 Project Structure
+## ✨ Características
 
-Inside of your Astro project, you'll see the following folders and files:
+- ⚡ **Rendimiento optimizado** - Construido con Astro para máxima velocidad
+- 🎨 **Diseño moderno** - Interfaz atractiva con animaciones fluidas
+- 📱 **Totalmente responsive** - Adaptado para todos los dispositivos
+- 🎭 **Animaciones suaves** - Implementadas con Framer Motion y GSAP
+- ✨ **Efectos visuales** - Partículas interactivas con TSParticles
+- 🎯 **SEO optimizado** - Mejor visibilidad en motores de búsqueda
+- 🌙 **Tema oscuro** - Diseño elegante y cómodo para la vista
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+## 🛠️ Tecnologías
+
+- **[Astro](https://astro.build/)** - Framework web moderno
+- **[React](https://react.dev/)** - Biblioteca de UI
+- **[TypeScript](https://www.typescriptlang.org/)** - Tipado estático
+- **[Tailwind CSS](https://tailwindcss.com/)** - Framework CSS utility-first
+- **[Framer Motion](https://www.framer.com/motion/)** - Animaciones
+- **[GSAP](https://greensock.com/gsap/)** - Animaciones avanzadas
+- **[TSParticles](https://particles.js.org/)** - Efectos de partículas
+
+## 📦 Instalación
+
+1. Clona el repositorio:
+```bash
+git clone https://github.com/Themanzato/portfolio.git
+cd portfolio
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+2. Instala las dependencias:
+```bash
+npm install
+# o
+pnpm install
+# o
+yarn install
+```
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+3. Inicia el servidor de desarrollo:
+```bash
+npm run dev
+# o
+pnpm run dev
+# o
+yarn dev
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+4. Abre tu navegador en `http://localhost:4321`
 
-## 🧞 Commands
+## 🧞 Comandos Disponibles
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                    | Action                                           |
+| Comando                    | Acción                                           |
 | :------------------------- | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm run dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm run build`           | Build your production site to `./dist/`          |
-| `pnpm run preview`         | Preview your build locally, before deploying     |
-| `pnpm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm run astro -- --help` | Get help using the Astro CLI                     |
+| `npm run dev`              | Inicia el servidor de desarrollo en `localhost:4321` |
+| `npm run build`            | Construye el sitio para producción en `./dist/` |
+| `npm run preview`          | Previsualiza la build localmente antes de desplegar |
+| `npm run astro ...`        | Ejecuta comandos CLI de Astro como `astro add`, `astro check` |
+| `npm run format`           | Formatea el código con Prettier |
+
+## 📁 Estructura del Proyecto
+
+```
+/
+├── public/
+│   ├── avatar.webp
+│   ├── certifications/
+│   ├── logos/
+│   ├── projects/
+│   ├── tech-icons/
+│   └── resume.pdf
+├── src/
+│   ├── components/
+│   │   ├── experience/
+│   │   ├── icons/
+│   │   └── SparklesCore.tsx
+│   ├── data/
+│   │   ├── experience.ts
+│   │   └── socials.ts
+│   ├── layouts/
+│   │   └── Layout.astro
+│   ├── libs/
+│   │   └── context-cursor/
+│   ├── pages/
+│   │   └── index.astro
+│   ├── scripts/
+│   │   └── main.ts
+│   └── utils/
+│       └── cn.ts
+├── astro.config.mjs
+├── tailwind.config.mjs
+└── tsconfig.json
+```
+
+## 🚀 Despliegue
+
+Este proyecto puede desplegarse fácilmente en plataformas como:
+
+- **[Vercel](https://vercel.com/)** - Recomendado para Astro
+- **[Netlify](https://www.netlify.com/)**
+- **[GitHub Pages](https://pages.github.com/)**
+- **[Cloudflare Pages](https://pages.cloudflare.com/)**
+
+## 📄 Licencia
+
+El código está licenciado bajo **MIT**. Las palabras e imágenes están licenciadas bajo [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+## 👤 Autor
+
+**Manzato**
+
+- GitHub: [@Themanzato](https://github.com/Themanzato)
+- Portfolio: [Ver en vivo](https://github.com/Themanzato/portfolio)
+
+---
+
+⭐ Si te gusta este proyecto, ¡no olvides darle una estrella!
