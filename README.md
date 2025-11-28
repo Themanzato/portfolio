@@ -1,4 +1,4 @@
-# 🚀 Portfolio Personal - Manzato
+# 🚀 Portfolio Personal - Mario A
 
 <div align="center">
   <img width="1919" height="875" alt="image" src="https://github.com/user-attachments/assets/ed09206d-2b0c-4a39-8d5e-6512cc6c8290" />
@@ -68,12 +68,10 @@ yarn dev
 ```
 /
 ├── public/
-│   ├── avatar.webp
 │   ├── certifications/
 │   ├── logos/
 │   ├── projects/
-│   ├── tech-icons/
-│   └── resume.pdf
+│   └── tech-icons/
 ├── src/
 │   ├── components/
 │   │   ├── experience/
@@ -112,10 +110,10 @@ El código está licenciado bajo **MIT**. Las palabras e imágenes están licenc
 
 ## 👤 Autor
 
-**Manzato**
+**Mario Alberto Arroyo Utrera**
 
 - GitHub: [@Themanzato](https://github.com/Themanzato)
-- Portfolio: [Ver en vivo](https://github.com/Themanzato/portfolio)
+- Portfolio: [Ver en vivo](https://portfolio-two-gamma-if8rur9x6r.vercel.app/)
 
 ---
 
