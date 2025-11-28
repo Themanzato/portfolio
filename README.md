@@ -1,7 +1,7 @@
 # 🚀 Portfolio Personal - Manzato
 
 <div align="center">
-  <img alt="Demo" src="./demo/demo.webp" />
+  <img width="1919" height="875" alt="image" src="https://github.com/user-attachments/assets/ed09206d-2b0c-4a39-8d5e-6512cc6c8290" />
 </div>
 
 
