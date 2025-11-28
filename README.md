@@ -1,6 +1,6 @@
 <h2 align="center">
-  <p>Personal website built with Astro</p>
-  <a href="https://vrus.vercel.app/" target="_blank">https://vrus.vercel.app/</a>
+  <p>Portfolio Personal - Manzato</p>
+  <p>Desarrollado con Astro, React y Tailwind CSS</p>
 </h2>
 
 <div align="center">
