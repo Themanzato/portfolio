@@ -4,6 +4,42 @@ import Experience from "../components/experience/index.astro";
 import { EXPERIENCE, PROJECTS } from "../data/experience";
 import { SOCIALS } from "../data/socials";
 import Layout from "../layouts/Layout.astro";
+
+// Función para obtener el icono de una tecnología
+function getTechIcon(tech: string): string | null {
+  const techIconMap: Record<string, string> = {
+    'Flutter': '/tech-icons/flutter.png',
+    'Dart': '/tech-icons/flutter.png',
+    'TensorFlow Lite': '/tech-icons/python.svg',
+    'YOLO': '/tech-icons/python.svg',
+    'Unity': '/tech-icons/unity.png',
+    'C#': '/tech-icons/csharp.png',
+    'Google Cloud': '/tech-icons/google-cloud.png',
+    'Gemini AI': '/tech-icons/google-cloud.png',
+    'Google Sign-In': '/tech-icons/google-cloud.png',
+    'Firebase': '/tech-icons/google-cloud.png',
+    'React': '/tech-icons/react.svg',
+    'Node.js': '/tech-icons/nodejs.svg',
+    'JavaScript': '/tech-icons/javascript.svg',
+    'HTML': '/tech-icons/html.svg',
+    'CSS': '/tech-icons/css.png',
+    'PHP': '/tech-icons/php.png',
+    'MySQL': '/tech-icons/mysql.svg',
+    'Python': '/tech-icons/python.svg',
+    'AWS': '/tech-icons/aws.png',
+    'Git': '/tech-icons/git.svg',
+    'GitHub': '/tech-icons/git.svg',
+    'Jira': '/tech-icons/jira.png',
+    'Express': '/tech-icons/nodejs.svg',
+    'JSX': '/tech-icons/react.svg',
+    'Axios': '/tech-icons/javascript.svg',
+    'Bootstrap': '/tech-icons/css.png',
+    'Tailwind': '/tech-icons/tailwind.svg',
+    'Astro': '/tech-icons/astro.png',
+    'Vite': '/tech-icons/vite.png',
+  };
+  return techIconMap[tech] || null;
+}
 ---
 
 <Layout title="Mario Alberto Arroyo Utrera | Desarrollador Web & Móvil">
@@ -27,11 +63,6 @@ import Layout from "../layouts/Layout.astro";
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
         </svg>
       </a>
-      <a href="#skills" class="nav-link" data-section="skills" title="Tecnologías">
-        <svg class="nav-icon neon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      </a>
       <a href="#experience" class="nav-link" data-section="experience" title="Experiencia">
         <svg class="nav-icon neon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -40,6 +71,11 @@ import Layout from "../layouts/Layout.astro";
       <a href="#projects" class="nav-link" data-section="projects" title="Proyectos">
         <svg class="nav-icon neon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </a>
+      <a href="#skills" class="nav-link" data-section="skills" title="Tecnologías">
+        <svg class="nav-icon neon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
         </svg>
       </a>
       <a href="#education" class="nav-link" data-section="education" title="Educación">
@@ -70,11 +106,6 @@ import Layout from "../layouts/Layout.astro";
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
         </svg>
       </a>
-      <a href="#skills" class="nav-link-mobile" data-section="skills" title="Tecnologías">
-        <svg class="nav-icon neon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-        </svg>
-      </a>
       <a href="#experience" class="nav-link-mobile" data-section="experience" title="Experiencia">
         <svg class="nav-icon neon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -83,6 +114,11 @@ import Layout from "../layouts/Layout.astro";
       <a href="#projects" class="nav-link-mobile" data-section="projects" title="Proyectos">
         <svg class="nav-icon neon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </a>
+      <a href="#skills" class="nav-link-mobile" data-section="skills" title="Tecnologías">
+        <svg class="nav-icon neon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
         </svg>
       </a>
       <a href="#education" class="nav-link-mobile" data-section="education" title="Educación">
@@ -240,6 +276,114 @@ import Layout from "../layouts/Layout.astro";
           </section>
 
           <section
+            id="experience"
+            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+            aria-label="Experiencia laboral"
+          >
+            <h2 class="section-title">
+              <span class="section-title-icon">
+                <svg class="section-icon neon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </span>
+              <span data-i18n="experience-title">Experiencia Laboral</span>
+              </h2>
+            <ol class="group/list space-y-8">
+                {EXPERIENCE.map((experience) => <Experience {...experience} />)}
+              </ol>
+          </section>
+
+          <section
+            id="projects"
+            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+            aria-label="Proyectos personales destacados"
+          >
+            <h2 class="section-title">
+              <span class="section-title-icon">
+                <svg class="section-icon neon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </span>
+              <span data-i18n="projects-title">Proyectos Personales</span>
+            </h2>
+            <div class="grid gap-4">
+              {PROJECTS.map((project) => (
+                <div 
+                  class={`project-card space-card rounded-2xl p-5 cursor-pointer ${project.featured ? 'featured' : ''}`}
+                  data-project-id={project.id}
+                  data-project-title={project.title}
+                  data-project-images={JSON.stringify(project.images)}
+                >
+                  <div class="flex items-start justify-between gap-4">
+                    <div class="flex-1">
+                      <h3 class="font-semibold text-lg text-slate-200 flex items-center gap-2">
+                        {project.title}
+                        {project.featured && (
+                          <svg class="h-5 w-5 text-amber-400" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.6));">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          </svg>
+                        )}
+                        {project.images.length > 0 && (
+                          <span class="text-xs text-violet-400 flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            {project.images.length}
+                          </span>
+                        )}
+                      </h3>
+                      <p class="text-sm text-slate-400 mt-2" data-i18n={`project-${project.id}`}>{project.description}</p>
+                      <div class="flex flex-wrap gap-2 mt-3">
+                        {project.technologies.map((tech) => {
+                          const iconPath = getTechIcon(tech);
+                          return (
+                            <span class="text-xs px-2 py-1 rounded-full bg-violet-500/10 text-violet-300 border border-violet-500/20 inline-flex items-center gap-1.5">
+                              {iconPath && (
+                                <img src={iconPath} alt={tech} class="w-3.5 h-3.5 object-contain" />
+                              )}
+                              {tech}
+                            </span>
+                          );
+                        })}
+              </div>
+                    </div>
+                    <div class="flex gap-2">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          class="text-slate-400 hover:text-violet-300 transition-colors p-2 z-10"
+                          aria-label={`Ver ${project.title} en GitHub`}
+                          onclick="event.stopPropagation()"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-5 w-5">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                          </svg>
+                        </a>
+                      )}
+                      {project.url && (
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          class="text-slate-400 hover:text-violet-300 transition-colors p-2 z-10"
+                          aria-label={`Visitar ${project.title}`}
+                          onclick="event.stopPropagation()"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section
             id="skills"
             class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
             aria-label="Tecnologías"
@@ -362,91 +506,21 @@ import Layout from "../layouts/Layout.astro";
             </div>
           </section>
 
-          <section
-            id="experience"
-            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-            aria-label="Experiencia laboral"
-          >
-            <h2 class="section-title">
-              <span class="section-title-icon">
-                <svg class="section-icon neon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          <!-- Modal Certificados -->
+          <div id="certification-modal" class="certification-modal hidden">
+            <div id="certification-backdrop" class="certification-backdrop"></div>
+            <div class="certification-content">
+              <button id="certification-close-btn" class="certification-close" aria-label="Cerrar">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
-              </span>
-              <span data-i18n="experience-title">Experiencia Laboral</span>
-              </h2>
-            <ol class="group/list space-y-8">
-                {EXPERIENCE.map((experience) => <Experience {...experience} />)}
-              </ol>
-          </section>
-
-          <section
-            id="projects"
-            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-            aria-label="Proyectos personales destacados"
-          >
-            <h2 class="section-title">
-              <span class="section-title-icon">
-                <svg class="section-icon neon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </span>
-              <span data-i18n="projects-title">Proyectos Personales</span>
-            </h2>
-            <div class="grid gap-4">
-              {PROJECTS.map((project) => (
-                <div 
-                  class={`project-card space-card rounded-2xl p-5 cursor-pointer ${project.featured ? 'featured' : ''}`}
-                  data-project-id={project.id}
-                  data-project-title={project.title}
-                  data-project-images={JSON.stringify(project.images)}
-                >
-                  <div class="flex items-start justify-between gap-4">
-                    <div class="flex-1">
-                      <h3 class="font-semibold text-lg text-slate-200 flex items-center gap-2">
-                        {project.title}
-                        {project.featured && (
-                          <svg class="h-5 w-5 text-amber-400" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" style="filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.6));">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                          </svg>
-                        )}
-                        {project.images.length > 0 && (
-                          <span class="text-xs text-violet-400 flex items-center gap-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                            {project.images.length}
-                          </span>
-                        )}
-                      </h3>
-                      <p class="text-sm text-slate-400 mt-2" data-i18n={`project-${project.id}`}>{project.description}</p>
-                      <div class="flex flex-wrap gap-2 mt-3">
-                        {project.technologies.map((tech) => (
-                          <span class="text-xs px-2 py-1 rounded-full bg-violet-500/10 text-violet-300 border border-violet-500/20">
-                            {tech}
-                          </span>
-                        ))}
+              </button>
+              <h3 id="certification-title" class="certification-title"></h3>
+              <div class="certification-image-container">
+                <img id="certification-image" src="" alt="" class="certification-image" />
               </div>
-                    </div>
-                    {project.github && (
-                      <a
-                        href={project.github}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                        class="text-slate-400 hover:text-violet-300 transition-colors p-2 z-10"
-                        aria-label={`Ver ${project.title} en GitHub`}
-                        onclick="event.stopPropagation()"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-5 w-5">
-                          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                        </svg>
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
             </div>
-          </section>
+          </div>
 
           <!-- Modal Carrusel de Imágenes -->
           <div id="carousel-modal" class="carousel-modal hidden">
@@ -528,7 +602,11 @@ import Layout from "../layouts/Layout.astro";
             <div class="space-card rounded-2xl p-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="certification-item group">
-                  <div class="relative overflow-hidden rounded-lg border border-violet-500/20 bg-violet-500/5 p-4 hover:border-violet-500/40 transition-all duration-300">
+                  <div 
+                    class="relative overflow-hidden rounded-lg border border-violet-500/20 bg-violet-500/5 p-4 hover:border-violet-500/40 transition-all duration-300 cursor-pointer certification-card"
+                    data-certification-title="Google Cloud Computing Foundations"
+                    data-certification-image="/certifications/google-cloud.png"
+                  >
                     <img 
                       src="/certifications/google-cloud.png" 
                       alt="Google Cloud Computing Foundations" 
@@ -541,7 +619,11 @@ import Layout from "../layouts/Layout.astro";
                   </div>
                 </div>
                 <div class="certification-item group">
-                  <div class="relative overflow-hidden rounded-lg border border-violet-500/20 bg-violet-500/5 p-4 hover:border-violet-500/40 transition-all duration-300">
+                  <div 
+                    class="relative overflow-hidden rounded-lg border border-violet-500/20 bg-violet-500/5 p-4 hover:border-violet-500/40 transition-all duration-300 cursor-pointer certification-card"
+                    data-certification-title="Scrum Fundamentals Certified"
+                    data-certification-image="/certifications/scrum.png"
+                  >
                     <img 
                       src="/certifications/scrum.png" 
                       alt="Scrum Fundamentals Certified" 
@@ -901,6 +983,34 @@ import Layout from "../layouts/Layout.astro";
   /* Navigation Menu */
   .nav-menu {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #nav-menu-desktop {
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #nav-menu-desktop.nav-hidden {
+    opacity: 0;
+    transform: translateX(-20px) translateY(-50%);
+    pointer-events: none;
+  }
+
+  #nav-menu-desktop:not(.nav-hidden) {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+    animation: navFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes navFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-20px) translateY(-50%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) translateY(-50%);
+    }
   }
 
   .nav-link {
@@ -987,6 +1097,33 @@ import Layout from "../layouts/Layout.astro";
   /* Navigation Menu Mobile */
   .nav-menu-mobile {
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  #nav-menu-mobile {
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #nav-menu-mobile.nav-hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+    pointer-events: none;
+  }
+
+  #nav-menu-mobile:not(.nav-hidden) {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    animation: navMobileFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes navMobileFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
   }
 
   .nav-link-mobile {
@@ -1130,14 +1267,151 @@ import Layout from "../layouts/Layout.astro";
   .carousel-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    overflow: hidden;
+  }
+
+  .carousel-backdrop::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: 
+      radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 40%),
+      radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, transparent 60%);
+    transform: translate(-50%, -50%);
+    animation: spaceExplosion 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .carousel-backdrop::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.8), transparent),
+      radial-gradient(2px 2px at 60% 70%, rgba(139, 92, 246, 0.6), transparent),
+      radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 1), transparent),
+      radial-gradient(1px 1px at 80% 20%, rgba(236, 72, 153, 0.7), transparent),
+      radial-gradient(2px 2px at 30% 80%, rgba(59, 130, 246, 0.5), transparent);
+    background-size: 200% 200%, 150% 150%, 100% 100%, 120% 120%, 180% 180%;
+    background-position: 0% 0%, 100% 100%, 50% 50%, 80% 20%, 30% 80%;
+    opacity: 0;
+    animation: starsTwinkle 3s ease-in-out infinite, starsReveal 0.8s ease-out forwards;
   }
 
   .carousel-modal.active .carousel-backdrop {
     opacity: 1;
+    animation: spaceBackdrop 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .carousel-modal.closing .carousel-backdrop {
+    animation: spaceBackdropClose 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .carousel-modal.closing .carousel-backdrop::before {
+    animation: spaceExplosionClose 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .carousel-modal.closing .carousel-backdrop::after {
+    animation: starsFadeOut 0.5s ease-out forwards;
+  }
+
+  @keyframes spaceBackdrop {
+    0% {
+      background: rgba(0, 0, 0, 0);
+      backdrop-filter: blur(0px);
+    }
+    100% {
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  @keyframes spaceBackdropClose {
+    0% {
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      opacity: 1;
+    }
+    100% {
+      background: rgba(0, 0, 0, 0);
+      backdrop-filter: blur(0px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes spaceExplosionClose {
+    0% {
+      width: 180vw;
+      height: 180vh;
+      opacity: 0.3;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      width: 0;
+      height: 0;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0);
+    }
+  }
+
+  @keyframes starsFadeOut {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+  }
+
+  @keyframes spaceExplosion {
+    0% {
+      width: 0;
+      height: 0;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(0);
+    }
+    50% {
+      width: 200vw;
+      height: 200vh;
+      opacity: 0.8;
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+      width: 180vw;
+      height: 180vh;
+      opacity: 0.3;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  @keyframes starsReveal {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes starsTwinkle {
+    0%, 100% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
   }
 
   .carousel-content {
@@ -1152,14 +1426,51 @@ import Layout from "../layouts/Layout.astro";
     justify-content: center;
     padding: 20px;
     box-sizing: border-box;
-    transform: scale(0.8) translateY(20px);
+    transform: scale3d(0.7, 0.7, 1) translate3d(0, 50px, 0);
     opacity: 0;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+    will-change: transform, opacity;
+    transform-style: preserve-3d;
   }
 
   .carousel-modal.active .carousel-content {
-    transform: scale(1) translateY(0);
-    opacity: 1;
+    animation: spacePortal 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .carousel-modal.closing .carousel-content {
+    animation: spacePortalClose 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  @keyframes spacePortal {
+    0% {
+      transform: scale3d(0.7, 0.7, 1) translate3d(0, 50px, 0);
+      opacity: 0;
+    }
+    60% {
+      transform: scale3d(1.05, 1.05, 1) translate3d(0, -5px, 0);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes spacePortalClose {
+    0% {
+      transform: scale(1) translateZ(0) rotateX(0deg);
+      opacity: 1;
+      filter: blur(0) brightness(1);
+    }
+    60% {
+      transform: scale(0.85) translateZ(-100px) rotateX(20deg);
+      opacity: 0.7;
+      filter: blur(5px) brightness(1.2);
+    }
+    100% {
+      transform: scale(0.5) translateZ(-250px) rotateX(40deg);
+      opacity: 0;
+      filter: blur(12px) brightness(1.5);
+    }
   }
 
   .carousel-close {
@@ -1172,12 +1483,16 @@ import Layout from "../layouts/Layout.astro";
     border-radius: 50%;
     padding: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    z-index: 20;
   }
 
   .carousel-close:hover {
     color: white;
-    background: rgba(139, 92, 246, 0.4);
+    background: rgba(139, 92, 246, 0.5);
+    border-color: rgba(139, 92, 246, 0.8);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
   }
 
   .carousel-title {
@@ -1211,6 +1526,8 @@ import Layout from "../layouts/Layout.astro";
     padding: 0;
     width: 100%;
     animation: floatCarousel 4s ease-in-out infinite;
+    transform-style: preserve-3d;
+    perspective: 1000px;
   }
 
   @keyframes floatCarousel {
@@ -1232,6 +1549,9 @@ import Layout from "../layouts/Layout.astro";
     border-radius: 12px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
     display: block;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
   }
 
   .carousel-images.horizontal-image {
@@ -1279,63 +1599,111 @@ import Layout from "../layouts/Layout.astro";
   }
 
   .carousel-images img.slide-in-right {
-    animation: slideInRight 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: slideInRight 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .carousel-images img.slide-in-left {
-    animation: slideInLeft 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: slideInLeft 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .carousel-images img.slide-change-right {
+    animation: slideChangeRight 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .carousel-images img.slide-change-left {
+    animation: slideChangeLeft 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  @keyframes slideChangeRight {
+    0% {
+      transform: translate3d(80px, 0, 0) scale3d(0.9, 0.9, 1);
+      opacity: 0;
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideChangeLeft {
+    0% {
+      transform: translate3d(-80px, 0, 0) scale3d(0.9, 0.9, 1);
+      opacity: 0;
+    }
+    100% {
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+      opacity: 1;
+    }
   }
 
   .carousel-images img.fade-in {
-    animation: fadeInImage 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    animation: fadeInImage 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .carousel-modal.closing .carousel-images img {
+    animation: imageFadeOut 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  @keyframes imageFadeOut {
+    0% {
+      transform: scale(1) translateZ(0) rotateY(0deg);
+      opacity: 1;
+      filter: blur(0) brightness(1);
+    }
+    50% {
+      transform: scale(0.9) translateZ(-50px) rotateY(10deg);
+      opacity: 0.6;
+      filter: blur(3px) brightness(1.2);
+    }
+    100% {
+      transform: scale(0.7) translateZ(-150px) rotateY(25deg);
+      opacity: 0;
+      filter: blur(8px) brightness(1.5);
+    }
   }
 
   @keyframes slideInRight {
     0% {
       opacity: 0;
-      transform: translateX(200px) scale(0.7) rotateY(-25deg) rotateZ(5deg);
-      filter: blur(8px) brightness(1.5);
+      transform: translate3d(150px, 0, 0) scale3d(0.85, 0.85, 1);
     }
-    50% {
-      filter: blur(2px) brightness(1.2);
+    60% {
+      opacity: 0.9;
+      transform: translate3d(-8px, 0, 0) scale3d(1.02, 1.02, 1);
     }
     100% {
       opacity: 1;
-      transform: translateX(0) scale(1) rotateY(0) rotateZ(0);
-      filter: blur(0) brightness(1);
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
     }
   }
 
   @keyframes slideInLeft {
     0% {
       opacity: 0;
-      transform: translateX(-200px) scale(0.7) rotateY(25deg) rotateZ(-5deg);
-      filter: blur(8px) brightness(1.5);
+      transform: translate3d(-150px, 0, 0) scale3d(0.85, 0.85, 1);
     }
-    50% {
-      filter: blur(2px) brightness(1.2);
+    60% {
+      opacity: 0.9;
+      transform: translate3d(8px, 0, 0) scale3d(1.02, 1.02, 1);
     }
     100% {
       opacity: 1;
-      transform: translateX(0) scale(1) rotateY(0) rotateZ(0);
-      filter: blur(0) brightness(1);
+      transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
     }
   }
 
   @keyframes fadeInImage {
     0% {
       opacity: 0;
-      transform: scale(0.5) rotateX(20deg);
-      filter: blur(15px) brightness(2);
+      transform: scale3d(0.8, 0.8, 1) translate3d(0, 30px, 0);
     }
-    60% {
-      transform: scale(1.05) rotateX(-5deg);
-      filter: blur(0) brightness(1.1);
+    50% {
+      opacity: 0.8;
+      transform: scale3d(1.05, 1.05, 1) translate3d(0, -5px, 0);
     }
     100% {
       opacity: 1;
-      transform: scale(1) rotateX(0);
-      filter: blur(0) brightness(1);
+      transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
     }
   }
 
@@ -1398,6 +1766,200 @@ import Layout from "../layouts/Layout.astro";
   .carousel-empty.hidden {
     display: none;
   }
+
+  /* Modal de Certificados */
+  .certification-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0.4s ease;
+  }
+
+  .certification-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .certification-modal.hidden {
+    display: none;
+  }
+
+  .certification-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .certification-modal.active .certification-backdrop {
+    opacity: 1;
+  }
+
+  .certification-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 85vw;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    transform: scale(0.3) rotateY(90deg);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+  }
+
+  .certification-modal.active .certification-content {
+    transform: scale(1) rotateY(0deg);
+    opacity: 1;
+  }
+
+  .certification-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    color: #94a3b8;
+    background: rgba(139, 92, 246, 0.3);
+    border: 2px solid rgba(139, 92, 246, 0.5);
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 20;
+  }
+
+  .certification-close:hover {
+    color: white;
+    background: rgba(139, 92, 246, 0.5);
+    border-color: rgba(139, 92, 246, 0.8);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.6);
+  }
+
+  .certification-title {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+  }
+
+  .certification-modal.active .certification-title {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .certification-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 750px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+  }
+
+  .certification-image {
+    max-width: 100%;
+    max-height: 70vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.8),
+      0 0 60px rgba(139, 92, 246, 0.4),
+      0 0 100px rgba(139, 92, 246, 0.2);
+    filter: brightness(1.05) contrast(1.05);
+    border: 3px solid rgba(139, 92, 246, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+  }
+
+  .certification-zoom-in {
+    animation: certificationZoomIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .certification-zoom-out {
+    animation: certificationZoomOut 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+  }
+
+  @keyframes certificationZoomIn {
+    0% {
+      transform: scale(0.2) rotateZ(-15deg) rotateY(45deg);
+      opacity: 0;
+      filter: blur(20px) brightness(2);
+      box-shadow: 0 0 0 rgba(139, 92, 246, 0);
+    }
+    50% {
+      transform: scale(1.1) rotateZ(5deg) rotateY(-5deg);
+      filter: blur(5px) brightness(1.3);
+      box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+    }
+    100% {
+      transform: scale(1) rotateZ(0deg) rotateY(0deg);
+      opacity: 1;
+      filter: blur(0) brightness(1.05);
+      box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(139, 92, 246, 0.4),
+        0 0 100px rgba(139, 92, 246, 0.2);
+    }
+  }
+
+  @keyframes certificationZoomOut {
+    0% {
+      transform: scale(1) rotateZ(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.3) rotateZ(15deg) rotateY(-45deg);
+      opacity: 0;
+      filter: blur(15px) brightness(2);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .certification-content {
+      padding: 20px 15px;
+      max-width: 90vw;
+      max-height: 85vh;
+    }
+
+    .certification-title {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .certification-image-container {
+      max-width: 100%;
+    }
+
+    .certification-image {
+      max-height: 65vh;
+      padding: 5px;
+    }
+
+    .certification-close {
+      top: -40px;
+      padding: 8px;
+    }
+  }
 </style>
 
 <script is:inline>
@@ -1408,19 +1970,39 @@ import Layout from "../layouts/Layout.astro";
   function closeCarousel() {
     const modal = document.getElementById('carousel-modal');
     if (modal) {
+      // Agregar clase de cierre para animación suave
+      modal.classList.add('closing');
       modal.classList.remove('active');
       document.body.style.overflow = '';
-      setTimeout(function() {
-        modal.classList.add('hidden');
-      }, 300);
       
-      // Mostrar menú y selector de idioma
-      const langSelector = document.getElementById('language-selector');
-      const navDesktop = document.getElementById('nav-menu-desktop');
-      const navMobile = document.getElementById('nav-menu-mobile');
-      if (langSelector) langSelector.classList.remove('hidden');
-      if (navDesktop) navDesktop.classList.remove('hidden');
-      if (navMobile) navMobile.classList.remove('hidden');
+      setTimeout(function() {
+        modal.classList.remove('closing');
+        modal.classList.add('hidden');
+        
+        // Limpiar animaciones de imágenes
+        const imagesContainer = document.getElementById('carousel-images');
+        if (imagesContainer) {
+          const images = imagesContainer.querySelectorAll('img');
+          images.forEach(img => {
+            img.style.animation = '';
+          });
+        }
+        
+        // Mostrar menú y selector de idioma después de que el modal se cierre
+        const langSelector = document.getElementById('language-selector');
+        const navDesktop = document.getElementById('nav-menu-desktop');
+        const navMobile = document.getElementById('nav-menu-mobile');
+        if (langSelector) {
+          langSelector.style.opacity = '1';
+          langSelector.style.pointerEvents = '';
+        }
+        if (navDesktop) {
+          navDesktop.classList.remove('nav-hidden');
+        }
+        if (navMobile) {
+          navMobile.classList.remove('nav-hidden');
+        }
+      }, 500);
     }
   }
 
@@ -1471,11 +2053,18 @@ import Layout from "../layouts/Layout.astro";
     imagesContainer.classList.add('transitioning');
     setTimeout(function() {
       imagesContainer.classList.remove('transitioning');
-    }, 500);
+    }, 400);
     
     images.forEach((img, i) => {
       if (i === currentSlide) {
+        // Primero ocultar todas las imágenes
+        images.forEach(img => {
+          img.style.display = 'none';
+        });
+        
+        // Mostrar la imagen actual
         img.style.display = 'block';
+        
         if (img.complete) {
           detectImageOrientation(img, imagesContainer);
         } else {
@@ -1483,9 +2072,22 @@ import Layout from "../layouts/Layout.astro";
             detectImageOrientation(this, imagesContainer);
           };
         }
-        img.classList.remove('slide-in-right', 'slide-in-left', 'fade-in');
+        
+        // Remover todas las clases de animación anteriores y estilos inline
+        img.classList.remove('slide-in-right', 'slide-in-left', 'fade-in', 'slide-change-right', 'slide-change-left');
+        img.style.transform = '';
+        img.style.opacity = '';
+        img.style.filter = '';
+        img.style.transition = '';
+        img.style.animation = '';
+        
+        // Forzar reflow para reiniciar animación
         void img.offsetWidth;
-        img.classList.add(slideDirection === 'right' ? 'slide-in-right' : 'slide-in-left');
+        
+        // Aplicar animación breve de cambio con un pequeño delay para asegurar que se ejecute
+        setTimeout(function() {
+          img.classList.add(slideDirection === 'right' ? 'slide-change-right' : 'slide-change-left');
+        }, 10);
       } else {
         img.style.display = 'none';
       }
@@ -1546,21 +2148,28 @@ import Layout from "../layouts/Layout.astro";
       if (totalIndicator) totalIndicator.textContent = images.length;
     }
     
+    // Ocultar menú y selector de idioma ANTES de mostrar el modal
+    const langSelector = document.getElementById('language-selector');
+    const navDesktop = document.getElementById('nav-menu-desktop');
+    const navMobile = document.getElementById('nav-menu-mobile');
+    if (langSelector) {
+      langSelector.style.opacity = '0';
+      langSelector.style.pointerEvents = 'none';
+    }
+    if (navDesktop) {
+      navDesktop.classList.add('nav-hidden');
+    }
+    if (navMobile) {
+      navMobile.classList.add('nav-hidden');
+    }
+    
     modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
     requestAnimationFrame(function() {
       requestAnimationFrame(function() {
         modal.classList.add('active');
       });
     });
-    document.body.style.overflow = 'hidden';
-    
-    // Ocultar menú y selector de idioma
-    const langSelector = document.getElementById('language-selector');
-    const navDesktop = document.getElementById('nav-menu-desktop');
-    const navMobile = document.getElementById('nav-menu-mobile');
-    if (langSelector) langSelector.classList.add('hidden');
-    if (navDesktop) navDesktop.classList.add('hidden');
-    if (navMobile) navMobile.classList.add('hidden');
   }
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -1616,6 +2225,110 @@ import Layout from "../layouts/Layout.astro";
       });
     });
 
+    // Funciones para modal de certificados
+    function openCertificationModal(title, imageSrc) {
+      const modal = document.getElementById('certification-modal');
+      const titleEl = document.getElementById('certification-title');
+      const imageEl = document.getElementById('certification-image');
+      
+      if (!modal || !titleEl || !imageEl) return;
+      
+      titleEl.textContent = title;
+      imageEl.src = imageSrc;
+      imageEl.alt = title;
+      
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      
+      // Ocultar menú y selector de idioma
+      const langSelector = document.getElementById('language-selector');
+      const navDesktop = document.getElementById('nav-menu-desktop');
+      const navMobile = document.getElementById('nav-menu-mobile');
+      if (langSelector) {
+        langSelector.style.opacity = '0';
+        langSelector.style.pointerEvents = 'none';
+      }
+      if (navDesktop) {
+        navDesktop.classList.add('nav-hidden');
+      }
+      if (navMobile) {
+        navMobile.classList.add('nav-hidden');
+      }
+      
+      // Animación de entrada
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          modal.classList.add('active');
+          imageEl.classList.add('certification-zoom-in');
+        });
+      });
+    }
+
+    function closeCertificationModal() {
+      const modal = document.getElementById('certification-modal');
+      const imageEl = document.getElementById('certification-image');
+      
+      if (!modal) return;
+      
+      if (imageEl) {
+        imageEl.classList.remove('certification-zoom-in');
+        imageEl.classList.add('certification-zoom-out');
+      }
+      
+      modal.classList.remove('active');
+      
+      setTimeout(function() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+        if (imageEl) {
+          imageEl.classList.remove('certification-zoom-out');
+        }
+        
+        // Mostrar menú y selector de idioma
+        const langSelector = document.getElementById('language-selector');
+        const navDesktop = document.getElementById('nav-menu-desktop');
+        const navMobile = document.getElementById('nav-menu-mobile');
+        if (langSelector) {
+          langSelector.style.opacity = '1';
+          langSelector.style.pointerEvents = '';
+        }
+        if (navDesktop) {
+          navDesktop.classList.remove('nav-hidden');
+        }
+        if (navMobile) {
+          navMobile.classList.remove('nav-hidden');
+        }
+      }, 400);
+    }
+
+    // Manejar clicks en certificados
+    document.querySelectorAll('.certification-card').forEach(function(certCard) {
+      certCard.addEventListener('click', function(e) {
+        const title = certCard.dataset.certificationTitle || '';
+        const image = certCard.dataset.certificationImage || '';
+        
+        if (image) {
+          certCard.classList.add('clicking');
+          setTimeout(function() {
+            certCard.classList.remove('clicking');
+          }, 300);
+          
+          openCertificationModal(title, image);
+        }
+      });
+    });
+
+    // Event listeners para cerrar modal de certificados
+    document.getElementById('certification-backdrop').addEventListener('click', closeCertificationModal);
+    document.getElementById('certification-close-btn').addEventListener('click', closeCertificationModal);
+    
+    document.addEventListener('keydown', function(e) {
+      const modal = document.getElementById('certification-modal');
+      if (modal && !modal.classList.contains('hidden') && e.key === 'Escape') {
+        closeCertificationModal();
+      }
+    });
+
     document.getElementById('carousel-backdrop').addEventListener('click', closeCarousel);
     document.getElementById('carousel-close-btn').addEventListener('click', closeCarousel);
     document.getElementById('carousel-prev-btn').addEventListener('click', prevSlide);
@@ -1651,6 +2364,8 @@ import Layout from "../layouts/Layout.astro";
         'project-trust': 'Videojuego indie de plataformas con mecánicas únicas y diseño de niveles desafiante.',
         'project-memorydev': 'App móvil para gestión de proyectos de desarrollo con sincronización en la nube.',
         'project-sussyai': 'App móvil de chat con IA para aprendizaje de inglés de forma interactiva.',
+        'project-datasaints': 'Página web para ofrecer servicios de desarrollo. 🚧 En desarrollo',
+        'project-eepediaz': 'App móvil para jugadores de Call of Duty Zombies. Ver tutoriales, consejos y compartir en foros sobre los easter eggs de zombies.',
         'education-title': 'Educación',
         'education-degree': 'Ingeniería en Sistemas Computacionales',
         'education-institution': 'Instituto Tecnológico Superior de Xalapa',
@@ -1696,6 +2411,8 @@ import Layout from "../layouts/Layout.astro";
         'project-trust': 'Indie platform game with unique mechanics and challenging level design.',
         'project-memorydev': 'Mobile app for development project management with cloud synchronization.',
         'project-sussyai': 'AI-powered mobile chat app for interactive English learning.',
+        'project-datasaints': 'Web page to offer development services. 🚧 In development',
+        'project-eepediaz': 'Mobile app for Call of Duty Zombies players. Watch tutorials, tips and share in forums about zombie easter eggs.',
         'education-title': 'Education',
         'education-degree': 'Computer Systems Engineering',
         'education-institution': 'Instituto Tecnológico Superior de Xalapa',

@@ -3,6 +3,47 @@ import type { Props } from "./props";
 
 const { dates, title, company, companyUrl, description, technologies, logo, id, images = [] } =
   Astro.props;
+
+// Función para obtener el icono de una tecnología
+function getTechIcon(tech: string): string | null {
+  const techIconMap: Record<string, string> = {
+    'Flutter': '/tech-icons/flutter.png',
+    'Dart': '/tech-icons/flutter.png',
+    'TensorFlow Lite': '/tech-icons/python.svg',
+    'YOLO': '/tech-icons/python.svg',
+    'Unity': '/tech-icons/unity.png',
+    'C#': '/tech-icons/csharp.png',
+    'Google Cloud': '/tech-icons/google-cloud.png',
+    'Gemini AI': '/tech-icons/google-cloud.png',
+    'Google Sign-In': '/tech-icons/google-cloud.png',
+    'Firebase': '/tech-icons/google-cloud.png',
+    'React': '/tech-icons/react.svg',
+    'Node.js': '/tech-icons/nodejs.svg',
+    'JavaScript': '/tech-icons/javascript.svg',
+    'HTML': '/tech-icons/html.svg',
+    'CSS': '/tech-icons/css.png',
+    'PHP': '/tech-icons/php.png',
+    'MySQL': '/tech-icons/mysql.svg',
+    'Python': '/tech-icons/python.svg',
+    'AWS': '/tech-icons/aws.png',
+    'Git': '/tech-icons/git.svg',
+    'GitHub': '/tech-icons/git.svg',
+    'Jira': '/tech-icons/jira.png',
+    'Express': '/tech-icons/nodejs.svg',
+    'JSX': '/tech-icons/react.svg',
+    'Axios': '/tech-icons/javascript.svg',
+    'Bootstrap': '/tech-icons/css.png',
+    'Tailwind': '/tech-icons/tailwind.svg',
+    'Astro': '/tech-icons/astro.png',
+    'Vite': '/tech-icons/vite.png',
+    'Scrum': '/tech-icons/jira.png',
+    'Progress': '/tech-icons/msoffice.png',
+    'MS Office': '/tech-icons/msoffice.png',
+    'Laragon': '/tech-icons/laragon.png',
+    'Visual Studio': '/tech-icons/csharp.png',
+  };
+  return techIconMap[tech] || null;
+}
 ---
 
 <li class={`experience-item ${images.length > 0 ? 'experience-with-images' : ''}`}>
@@ -68,13 +109,19 @@ const { dates, title, company, companyUrl, description, technologies, logo, id, 
       {
         technologies.length && (
           <ul class="mt-4 flex flex-wrap gap-2" aria-label="Technologies used">
-            {technologies.map((technology) => (
-              <li>
-                <div class="flex items-center rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs font-medium leading-5 text-violet-300">
-                  {technology}
-                </div>
-              </li>
-            ))}
+            {technologies.map((technology) => {
+              const iconPath = getTechIcon(technology);
+              return (
+                <li>
+                  <div class="flex items-center rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs font-medium leading-5 text-violet-300 gap-1.5">
+                    {iconPath && (
+                      <img src={iconPath} alt={technology} class="w-3.5 h-3.5 object-contain" />
+                    )}
+                    {technology}
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         )
       }
