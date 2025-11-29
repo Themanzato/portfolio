@@ -286,6 +286,10 @@ import Layout from "../layouts/Layout.astro";
                       <img src="/tech-icons/tailwind.svg" alt="Tailwind" class="w-3.5 h-3.5 object-contain" />
                       Tailwind
                     </span>
+                    <span class="tech-tag tech-tag-vite inline-flex items-center gap-1.5">
+                      <img src="/tech-icons/vite.png" alt="Vite" class="w-3.5 h-3.5 object-contain" />
+                      Vite
+                    </span>
             </div>
                 </div>
 
@@ -789,6 +793,12 @@ import Layout from "../layouts/Layout.astro";
     border-color: rgba(66, 133, 244, 0.3);
   }
 
+  .tech-tag-vite {
+    background: rgba(100, 220, 140, 0.15);
+    color: #64dc8c;
+    border-color: rgba(100, 220, 140, 0.3);
+  }
+
   .cv-link {
     color: #c4b5fd;
     background: rgba(139, 92, 246, 0.1);
@@ -1234,6 +1244,17 @@ import Layout from "../layouts/Layout.astro";
     max-height: min(700px, 80vh);
   }
 
+  /* Estilos para experiencia laboral - imágenes más grandes */
+  .carousel-images.experience-carousel.horizontal-image {
+    max-width: min(800px, 95vw);
+    max-height: min(600px, 70vh);
+  }
+
+  .carousel-images.experience-carousel.vertical-image {
+    max-width: min(350px, 80vw);
+    max-height: min(850px, 85vh);
+  }
+
   @media (max-width: 768px) {
     .carousel-images.vertical-image {
       max-width: min(220px, 70vw);
@@ -1243,6 +1264,17 @@ import Layout from "../layouts/Layout.astro";
     .carousel-images.horizontal-image {
       max-width: min(500px, 95vw);
       max-height: min(350px, 45vh);
+    }
+
+    /* Experiencia laboral en móvil */
+    .carousel-images.experience-carousel.vertical-image {
+      max-width: min(300px, 80vw);
+      max-height: min(750px, 80vh);
+    }
+    
+    .carousel-images.experience-carousel.horizontal-image {
+      max-width: min(700px, 95vw);
+      max-height: min(500px, 60vh);
     }
   }
 
@@ -1463,7 +1495,7 @@ import Layout from "../layouts/Layout.astro";
     }
   }
 
-  function openCarousel(title, images) {
+  function openCarousel(title, images, isExperience = false) {
     const modal = document.getElementById('carousel-modal');
     const titleEl = document.getElementById('carousel-title');
     const imagesContainer = document.getElementById('carousel-images');
@@ -1477,6 +1509,13 @@ import Layout from "../layouts/Layout.astro";
     titleEl.textContent = title;
     currentSlide = 0;
     currentImages = images;
+    
+    // Agregar o quitar clase para experiencia laboral
+    if (isExperience) {
+      imagesContainer.classList.add('experience-carousel');
+    } else {
+      imagesContainer.classList.remove('experience-carousel');
+    }
     
     if (images.length === 0) {
       imagesContainer.innerHTML = '';
@@ -1550,6 +1589,33 @@ import Layout from "../layouts/Layout.astro";
       });
     });
 
+    // Manejar clicks en experiencia laboral con imágenes
+    document.querySelectorAll('.experience-with-images > div').forEach(function(expCard) {
+      expCard.addEventListener('click', function(e) {
+        // No abrir si se hace click en un link o botón
+        if (e.target.closest('a') || e.target.tagName === 'A') return;
+        
+        const title = expCard.dataset.experienceTitle || '';
+        const imagesJson = expCard.dataset.experienceImages || '[]';
+        
+        let images = [];
+        try {
+          images = JSON.parse(imagesJson);
+        } catch (err) {
+          images = [];
+        }
+        
+        if (images.length > 0) {
+          expCard.classList.add('clicking');
+          setTimeout(function() {
+            expCard.classList.remove('clicking');
+          }, 300);
+          
+          openCarousel(title, images, true); // true indica que viene de experiencia laboral
+        }
+      });
+    });
+
     document.getElementById('carousel-backdrop').addEventListener('click', closeCarousel);
     document.getElementById('carousel-close-btn').addEventListener('click', closeCarousel);
     document.getElementById('carousel-prev-btn').addEventListener('click', prevSlide);
@@ -1601,14 +1667,15 @@ import Layout from "../layouts/Layout.astro";
         'exp-desc-vector': 'Planificación y coordinación de sprints con Scrum. Análisis de requerimientos y liderazgo técnico en equipos de desarrollo.',
         'exp-title-petravia': 'Desarrollador Web y Analista de Datos',
         'exp-desc-petravia': 'Desarrollo de sistema web para gestión de bitácoras de mantenimiento. Análisis de requerimientos e implementación de mejoras basadas en datos históricos.',
-        'exp-title-assistvision-exp': 'Desarrollador App Móvil \'Assist Vision\'',
-        'exp-desc-assistvision-exp': 'App móvil para personas con discapacidad visual. 🏆 Ganadora local, 2do lugar regional y podio nacional en INNOVATECNM 2024. Flutter e IA para reconocimiento de billetes y colores en tiempo real.',
+        'exp-title-vector-evaluaciones': 'Desarrollador - Sistema de Evaluaciones',
+        'exp-desc-vector-evaluaciones': 'Desarrollo de sistema de evaluaciones para administrar la efectividad y retroalimentación de los sistemas internos de la empresa.',
         'exp-title-makarenko': 'Desarrollador Web – Freelance',
         'exp-desc-makarenko': 'Desarrollo de sistemas web para registro de desayunos escolares. Mantenimiento y soporte continuo.',
         'exp-title-imss': 'Desarrollador Web (Servicio Social)',
         'exp-desc-imss': 'Servicio social. Desarrollo de sistema web para gestión de archivos y lectura de documentos Excel para documentos legales.',
         'exp-title-dif': 'Desarrollador Web',
-        'exp-desc-dif': 'Gestión de solicitudes de soporte público con Scrum. Recolección de requerimientos, organización de sprints y ejecución con equipo de desarrollo.'
+        'exp-desc-dif': 'Gestión de solicitudes de soporte público con Scrum. Recolección de requerimientos, organización de sprints y ejecución con equipo de desarrollo.',
+        'exp-private-project': '(Sistema interno)'
       },
       en: {
         'title': 'Computer Systems Engineer',
@@ -1645,14 +1712,15 @@ import Layout from "../layouts/Layout.astro";
         'exp-desc-vector': 'Sprint planning and coordination with Scrum. Requirements analysis and technical leadership in development teams.',
         'exp-title-petravia': 'Web Developer and Data Analyst',
         'exp-desc-petravia': 'Web system development for maintenance log management. Requirements analysis and implementation of improvements based on historical data.',
-        'exp-title-assistvision-exp': 'Mobile App Developer \'Assist Vision\'',
-        'exp-desc-assistvision-exp': 'Mobile app for people with visual disabilities. 🏆 Local winner, 2nd place regional and national podium in INNOVATECNM 2024. Flutter and AI for real-time bill and color recognition.',
+        'exp-title-vector-evaluaciones': 'Developer - Evaluation System',
+        'exp-desc-vector-evaluaciones': 'Development of evaluation system to manage effectiveness and feedback of internal company systems.',
         'exp-title-makarenko': 'Web Developer – Freelance',
         'exp-desc-makarenko': 'Web system development for school breakfast registration. Continuous maintenance and support.',
         'exp-title-imss': 'Web Developer (Social Service)',
         'exp-desc-imss': 'Social service. Web system development for file management and Excel document reading for legal documents.',
         'exp-title-dif': 'Web Developer',
-        'exp-desc-dif': 'Public support request management with Scrum. Requirements gathering, sprint organization and execution with development team.'
+        'exp-desc-dif': 'Public support request management with Scrum. Requirements gathering, sprint organization and execution with development team.',
+        'exp-private-project': '(Internal system)'
       }
     };
 

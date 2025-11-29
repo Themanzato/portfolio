@@ -2,9 +2,10 @@ export interface Props {
   dates: string;
   title: string;
   company: string;
-  companyUrl: string;
+  companyUrl?: string;
   description: string;
   technologies: string[];
   logo?: string;
   id?: string;
+  images?: string[];
 }

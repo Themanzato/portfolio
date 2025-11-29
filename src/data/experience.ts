@@ -6,7 +6,6 @@ export const EXPERIENCE: (ExperienceProp & { id: string })[] = [
     dates: "Enero 2025 — Julio 2025",
     title: "Analista de Datos – Product Owner",
     company: "VECTOR Casa de Bolsa (Remoto)",
-    companyUrl: "https://www.vector.com.mx",
     description:
       "Planificación y coordinación de sprints con Scrum. Análisis de requerimientos y liderazgo técnico en equipos de desarrollo.",
     technologies: [
@@ -16,13 +15,13 @@ export const EXPERIENCE: (ExperienceProp & { id: string })[] = [
       "MS Office",
       "Scrum",
     ],
+    images: [] as string[],
   },
   {
     id: "petravia",
     dates: "Diciembre 2023 — Diciembre 2024",
     title: "Desarrollador Web y Analista de Datos",
     company: "PETRAVIA (Remoto)",
-    companyUrl: "https://www.bitacoradigitalpetravia.com/",
     description:
       "Desarrollo de sistema web para gestión de bitácoras de mantenimiento. Análisis de requerimientos e implementación de mejoras basadas en datos históricos.",
     technologies: [
@@ -36,30 +35,47 @@ export const EXPERIENCE: (ExperienceProp & { id: string })[] = [
       "Visual Studio",
       "AWS",
     ],
+    images: [
+      "/projects/petravia/1-petravia.jpeg",
+      "/projects/petravia/2-petravia.jpeg",
+      "/projects/petravia/3-petravia.jpeg",
+      "/projects/petravia/4-petravia.jpeg",
+      "/projects/petravia/5-petravia.jpeg",
+      "/projects/petravia/6-petravia.jpeg",
+      "/projects/petravia/7-petravia.jpeg",
+      "/projects/petravia/8-petravia.jpeg",
+    ] as string[],
   },
   {
-    id: "assistvision-exp",
-    dates: "2023",
-    title: "Desarrollador App Móvil 'Assist Vision'",
-    company: "Instituto Tecnológico Superior de Xalapa",
-    companyUrl: "https://www.itsx.edu.mx",
+    id: "vector-evaluaciones",
+    dates: "Mayo 2025",
+    title: "Desarrollador web - Sistema de Evaluaciones",
+    company: "VECTOR Casa de Bolsa (Remoto)",
     description:
-      "App móvil para personas con discapacidad visual. 🏆 Ganadora local, 2do lugar regional y podio nacional en INNOVATECNM 2024. Flutter e IA para reconocimiento de billetes y colores en tiempo real.",
+      "Desarrollo de sistema de evaluaciones para administrar la efectividad y retroalimentación de los sistemas internos de la empresa.",
     technologies: [
-      "Flutter",
-      "Dart",
-      "Visual Studio",
-      "YOLO",
-      "TensorFlow Lite",
-      "Python",
+      "React",
+      "Node.js",
+      "JavaScript",
+      "CSS",
+      "Jira",
+      "GitHub",
+      "Scrum",
     ],
+    images: [
+      "/projects/evaluaciones/1-evaluaciones.jpeg",
+      "/projects/evaluaciones/2-evaluaciones.jpeg",
+      "/projects/evaluaciones/3-evaluaciones.jpeg",
+      "/projects/evaluaciones/4-evaluaciones.jpeg",
+      "/projects/evaluaciones/5-evaluaciones.jpeg",
+      "/projects/evaluaciones/6-evaluaciones.jpeg",
+    ] as string[],
   },
   {
     id: "makarenko",
     dates: "2023 — 2025",
     title: "Desarrollador Web – Freelance",
     company: "MAKARENKO (Remoto)",
-    companyUrl: "https://www.instagram.com/makarenko_centroedu?igsh=eHk3YjlqM3VkMzRu&utm_source=qr",
     description:
       "Desarrollo de sistemas web para registro de desayunos escolares. Mantenimiento y soporte continuo.",
     technologies: [
@@ -72,15 +88,24 @@ export const EXPERIENCE: (ExperienceProp & { id: string })[] = [
       "MySQL",
       "AWS",
     ],
+    images: [
+      "/projects/makarenko/1-makarenko.jpeg",
+      "/projects/makarenko/2-makarenko.jpeg",
+      "/projects/makarenko/3-makarenko.jpeg",
+      "/projects/makarenko/4-makarenko.jpeg",
+      "/projects/makarenko/5-makarenko.jpeg",
+      "/projects/makarenko/6-makarenko.jpeg",
+      "/projects/makarenko/7-makarenko.jpeg",
+      "/projects/makarenko/8-makarenko.jpeg",
+    ] as string[],
   },
   {
     id: "imss",
     dates: "Febrero 2024 — Junio 2024",
     title: "Desarrollador Web (Servicio Social)",
     company: "IMSS",
-    companyUrl: "https://www.imss.gob.mx",
     description:
-      "Servicio social. Desarrollo de sistema web para gestión de archivos y lectura de documentos Excel para documentos legales.",
+      "Servicio social. Desarrollo de sistema web para gestión de archivos y lectura de documentos Excel para documentos.",
     technologies: [
       "PHP",
       "HTML",
@@ -91,13 +116,20 @@ export const EXPERIENCE: (ExperienceProp & { id: string })[] = [
       "AWS",
       "Laragon",
     ],
+    images: [
+      "/projects/imss/1-imss.jpeg",
+      "/projects/imss/2-imss.jpeg",
+      "/projects/imss/3-imss.jpeg",
+      "/projects/imss/4-imss.jpeg",
+      "/projects/imss/5-imss.jpeg",
+      "/projects/imss/6-imss.jpeg",
+    ] as string[],
   },
   {
     id: "dif",
     dates: "Febrero 2024 — Mayo 2024",
     title: "Desarrollador Web",
     company: "DIF Xalapa",
-    companyUrl: "https://www.difver.gob.mx/",
     description:
       "Gestión de solicitudes de soporte público con Scrum. Recolección de requerimientos, organización de sprints y ejecución con equipo de desarrollo.",
     technologies: [
@@ -111,6 +143,7 @@ export const EXPERIENCE: (ExperienceProp & { id: string })[] = [
       "Axios",
       "Jira",
     ],
+    images: [] as string[],
   },
 ];
 
@@ -145,6 +178,8 @@ export const PROJECTS = [
       "/projects/trust/4-trust.jpeg",
       "/projects/trust/5-trust.jpeg",
       "/projects/trust/6-trust.jpeg",
+      "/projects/trust/7-trust.jpeg",
+      "/projects/trust/8-trust.jpeg",
     ] as string[],
   },
   {
