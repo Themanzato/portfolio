@@ -174,15 +174,6 @@ function getTechIcon(tech: string): string | null {
                   </svg>
                   <span>Mario.arroyout@gmail.com</span>
                 </a>
-                <a 
-                  href="tel:+522283230941" 
-                  class="flex items-center justify-center lg:justify-start gap-2 text-slate-400 hover:text-cyan-300 transition-colors"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <span>+52 22 8323 0941</span>
-                </a>
               </div>
 
               <a
@@ -312,6 +303,10 @@ function getTechIcon(tech: string): string | null {
                   class={`project-card space-card rounded-2xl p-5 cursor-pointer ${project.featured ? 'featured' : ''}`}
                   data-project-id={project.id}
                   data-project-title={project.title}
+                  data-project-description={project.description}
+                  data-project-technologies={JSON.stringify(project.technologies)}
+                  data-project-github={project.github || ''}
+                  data-project-url={project.url || ''}
                   data-project-images={JSON.stringify(project.images)}
                 >
                   <div class="flex items-start justify-between gap-4">
@@ -531,26 +526,116 @@ function getTechIcon(tech: string): string | null {
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
-              <h3 id="carousel-title" class="carousel-title"></h3>
-              <div class="carousel-container">
-                <button id="carousel-prev-btn" class="carousel-nav carousel-prev" aria-label="Anterior">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-                <div id="carousel-images" class="carousel-images"></div>
-                <button id="carousel-next-btn" class="carousel-nav carousel-next" aria-label="Siguiente">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
+              
+              <!-- Interfaz para proyectos -->
+              <div id="project-detail-view" class="project-detail-view hidden">
+                <div class="project-detail-container">
+                  <!-- Columna izquierda: Carrusel de imágenes -->
+                  <div class="project-detail-image-section">
+                    <div class="project-image-carousel-container">
+                      <button id="project-prev-btn" class="project-carousel-nav project-carousel-prev" aria-label="Anterior">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                      <div id="project-image-carousel" class="project-image-carousel">
+                        <!-- Las imágenes se insertarán aquí -->
+                      </div>
+                      <button id="project-next-btn" class="project-carousel-nav project-carousel-next" aria-label="Siguiente">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div id="project-image-indicator" class="project-image-indicator">
+                      <span id="project-image-current">1</span>
+                      <span class="project-image-separator">/</span>
+                      <span id="project-image-total">1</span>
+                    </div>
+                    <!-- Carrusel de miniaturas -->
+                    <div id="project-thumbnails-container" class="project-thumbnails-container">
+                      <button id="project-thumbnails-prev" class="project-thumbnails-nav project-thumbnails-prev" aria-label="Anterior miniatura">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                      <div id="project-thumbnails" class="project-thumbnails">
+                        <!-- Las miniaturas se insertarán aquí -->
+                      </div>
+                      <button id="project-thumbnails-next" class="project-thumbnails-nav project-thumbnails-next" aria-label="Siguiente miniatura">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <!-- Columna derecha: Información del proyecto -->
+                  <div class="project-detail-info-section">
+                    <h3 id="project-detail-title" class="project-detail-title"></h3>
+                    <p id="project-detail-description" class="project-detail-description"></p>
+                    
+                    <div id="project-detail-highlights" class="project-detail-highlights">
+                      <div class="project-detail-section-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                        </svg>
+                        <span>DESTACADOS</span>
+                      </div>
+                      <ul id="project-detail-highlights-list" class="project-detail-highlights-list"></ul>
+                    </div>
+                    
+                    <div id="project-detail-tech" class="project-detail-tech">
+                      <div class="project-detail-section-header">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                        </svg>
+                        <span>STACK TECNOLÓGICO</span>
+                      </div>
+                      <div id="project-detail-tech-list" class="project-detail-tech-list"></div>
+                    </div>
+                    
+                    <div class="project-detail-buttons">
+                      <a id="project-detail-github" href="#" target="_blank" rel="noreferrer noopener" class="project-detail-github-btn hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span>Ver Código</span>
+                      </a>
+                      <a id="project-detail-demo" href="#" target="_blank" rel="noreferrer noopener" class="project-detail-demo-btn hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        <span>Ver Demo</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div id="carousel-indicator" class="carousel-indicator">
-                <span id="carousel-current">1</span>
-                <span class="carousel-separator">/</span>
-                <span id="carousel-total">4</span>
+              
+              <!-- Interfaz original para experiencia laboral -->
+              <div id="carousel-view" class="carousel-view">
+                <h3 id="carousel-title" class="carousel-title"></h3>
+                <div class="carousel-container">
+                  <button id="carousel-prev-btn" class="carousel-nav carousel-prev" aria-label="Anterior">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <div id="carousel-images" class="carousel-images"></div>
+                  <button id="carousel-next-btn" class="carousel-nav carousel-next" aria-label="Siguiente">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+                <div id="carousel-indicator" class="carousel-indicator">
+                  <span id="carousel-current">1</span>
+                  <span class="carousel-separator">/</span>
+                  <span id="carousel-total">4</span>
+                </div>
+                <p id="carousel-empty" class="carousel-empty hidden">No hay imágenes disponibles para este proyecto.</p>
               </div>
-              <p id="carousel-empty" class="carousel-empty hidden">No hay imágenes disponibles para este proyecto.</p>
             </div>
           </div>
 
@@ -1247,6 +1332,8 @@ function getTechIcon(tech: string): string | null {
     position: fixed;
     inset: 0;
     z-index: 100;
+    overflow: hidden;
+    touch-action: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1273,146 +1360,33 @@ function getTechIcon(tech: string): string | null {
     overflow: hidden;
   }
 
-  .carousel-backdrop::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: 
-      radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 40%),
-      radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, transparent 60%);
-    transform: translate(-50%, -50%);
-    animation: spaceExplosion 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-
-  .carousel-backdrop::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: 
-      radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.8), transparent),
-      radial-gradient(2px 2px at 60% 70%, rgba(139, 92, 246, 0.6), transparent),
-      radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 1), transparent),
-      radial-gradient(1px 1px at 80% 20%, rgba(236, 72, 153, 0.7), transparent),
-      radial-gradient(2px 2px at 30% 80%, rgba(59, 130, 246, 0.5), transparent);
-    background-size: 200% 200%, 150% 150%, 100% 100%, 120% 120%, 180% 180%;
-    background-position: 0% 0%, 100% 100%, 50% 50%, 80% 20%, 30% 80%;
-    opacity: 0;
-    animation: starsTwinkle 3s ease-in-out infinite, starsReveal 0.8s ease-out forwards;
-  }
-
   .carousel-modal.active .carousel-backdrop {
     opacity: 1;
-    animation: spaceBackdrop 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: fadeInBackdrop 0.3s ease-out forwards;
   }
 
   .carousel-modal.closing .carousel-backdrop {
-    animation: spaceBackdropClose 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: fadeOutBackdrop 0.25s ease-in forwards;
   }
 
-  .carousel-modal.closing .carousel-backdrop::before {
-    animation: spaceExplosionClose 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  }
-
-  .carousel-modal.closing .carousel-backdrop::after {
-    animation: starsFadeOut 0.5s ease-out forwards;
-  }
-
-  @keyframes spaceBackdrop {
+  @keyframes fadeInBackdrop {
     0% {
-      background: rgba(0, 0, 0, 0);
-      backdrop-filter: blur(0px);
+      opacity: 0;
     }
     100% {
-      background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(10px);
+      opacity: 1;
     }
   }
 
-  @keyframes spaceBackdropClose {
+  @keyframes fadeOutBackdrop {
     0% {
-      background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(10px);
       opacity: 1;
     }
     100% {
-      background: rgba(0, 0, 0, 0);
-      backdrop-filter: blur(0px);
       opacity: 0;
     }
   }
 
-  @keyframes spaceExplosionClose {
-    0% {
-      width: 180vw;
-      height: 180vh;
-      opacity: 0.3;
-      transform: translate(-50%, -50%) scale(1);
-    }
-    100% {
-      width: 0;
-      height: 0;
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0);
-    }
-  }
-
-  @keyframes starsFadeOut {
-    0% {
-      opacity: 1;
-      transform: scale(1);
-    }
-    100% {
-      opacity: 0;
-      transform: scale(0.8);
-    }
-  }
-
-  @keyframes spaceExplosion {
-    0% {
-      width: 0;
-      height: 0;
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(0);
-    }
-    50% {
-      width: 200vw;
-      height: 200vh;
-      opacity: 0.8;
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-    100% {
-      width: 180vw;
-      height: 180vh;
-      opacity: 0.3;
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
-
-  @keyframes starsReveal {
-    0% {
-      opacity: 0;
-      transform: scale(0.5);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes starsTwinkle {
-    0%, 100% {
-      opacity: 0.6;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.1);
-    }
-  }
 
   .carousel-content {
     position: relative;
@@ -1426,50 +1400,38 @@ function getTechIcon(tech: string): string | null {
     justify-content: center;
     padding: 20px;
     box-sizing: border-box;
-    transform: scale3d(0.7, 0.7, 1) translate3d(0, 50px, 0);
+    transform: scale(0.9) translateY(20px);
     opacity: 0;
     will-change: transform, opacity;
-    transform-style: preserve-3d;
   }
 
   .carousel-modal.active .carousel-content {
-    animation: spacePortal 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: spacePortal 0.35s ease-out forwards;
   }
 
   .carousel-modal.closing .carousel-content {
-    animation: spacePortalClose 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: spacePortalClose 0.25s ease-in forwards;
   }
 
   @keyframes spacePortal {
     0% {
-      transform: scale3d(0.7, 0.7, 1) translate3d(0, 50px, 0);
+      transform: scale(0.9) translateY(20px);
       opacity: 0;
     }
-    60% {
-      transform: scale3d(1.05, 1.05, 1) translate3d(0, -5px, 0);
-      opacity: 0.9;
-    }
     100% {
-      transform: scale3d(1, 1, 1) translate3d(0, 0, 0);
+      transform: scale(1) translateY(0);
       opacity: 1;
     }
   }
 
   @keyframes spacePortalClose {
     0% {
-      transform: scale(1) translateZ(0) rotateX(0deg);
+      transform: scale(1) translateY(0);
       opacity: 1;
-      filter: blur(0) brightness(1);
-    }
-    60% {
-      transform: scale(0.85) translateZ(-100px) rotateX(20deg);
-      opacity: 0.7;
-      filter: blur(5px) brightness(1.2);
     }
     100% {
-      transform: scale(0.5) translateZ(-250px) rotateX(40deg);
+      transform: scale(0.95) translateY(10px);
       opacity: 0;
-      filter: blur(12px) brightness(1.5);
     }
   }
 
@@ -1767,6 +1729,418 @@ function getTechIcon(tech: string): string | null {
     display: none;
   }
 
+  /* Vista de detalle de proyecto */
+  .carousel-view.hidden {
+    display: none;
+  }
+
+  .project-detail-view {
+    width: 100%;
+    max-width: 95vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem;
+    color: white;
+  }
+
+  .project-detail-view.hidden {
+    display: none;
+  }
+
+  .project-detail-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    background: rgba(15, 15, 30, 0.95);
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .project-detail-image-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .project-image-carousel-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .project-image-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    max-height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(16, 185, 129, 0.2);
+  }
+
+  .project-carousel-image {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: contain;
+    border-radius: 0.75rem;
+    display: none;
+  }
+
+  .project-carousel-nav {
+    color: #94a3b8;
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 50%;
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    z-index: 10;
+  }
+
+  .project-carousel-nav:hover {
+    color: white;
+    background: rgba(139, 92, 246, 0.4);
+    border-color: rgba(139, 92, 246, 0.6);
+    transform: scale(1.1);
+  }
+
+  .project-image-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: rgba(15, 15, 30, 0.95);
+    border-radius: 30px;
+    border: 2px solid rgba(139, 92, 246, 0.4);
+    font-family: 'Orbitron', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .project-image-indicator #project-image-current {
+    color: #8b5cf6;
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+  }
+
+  .project-image-indicator .project-image-separator {
+    color: rgba(148, 163, 184, 0.5);
+  }
+
+  .project-image-indicator #project-image-total {
+    color: #94a3b8;
+  }
+
+  /* Carrusel de miniaturas */
+  .project-thumbnails-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 350px;
+    margin-top: 1rem;
+  }
+
+  .project-thumbnails {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(139, 92, 246, 0.3) transparent;
+    flex: 1;
+    padding: 0.25rem;
+  }
+
+  .project-thumbnails::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .project-thumbnails::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .project-thumbnails::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.3);
+    border-radius: 2px;
+  }
+
+  .project-thumbnails::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 92, 246, 0.5);
+  }
+
+  .project-thumbnail {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid rgba(139, 92, 246, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    opacity: 0.6;
+  }
+
+  .project-thumbnail:hover {
+    opacity: 1;
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: scale(1.05);
+  }
+
+  .project-thumbnail.active {
+    opacity: 1;
+    border-color: rgba(16, 185, 129, 0.6);
+    border-width: 3px;
+    box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+    transform: scale(1.1);
+  }
+
+  .project-thumbnail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .project-thumbnails-nav {
+    color: #94a3b8;
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 50%;
+    padding: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .project-thumbnails-nav:hover {
+    color: white;
+    background: rgba(139, 92, 246, 0.4);
+    border-color: rgba(139, 92, 246, 0.6);
+    transform: scale(1.1);
+  }
+
+  .project-thumbnails-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .project-detail-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .project-detail-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #10b981;
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  }
+
+  .project-detail-description {
+    font-size: 1rem;
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .project-detail-section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #8b5cf6;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .project-detail-section-header svg {
+    width: 1rem;
+    height: 1rem;
+    color: #8b5cf6;
+  }
+
+  .project-detail-highlights {
+    margin-bottom: 1.25rem;
+  }
+
+  .project-detail-highlights-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .project-detail-highlights-list li {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .project-detail-highlights-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0.25rem;
+    top: 0.5rem;
+    color: #10b981;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    font-weight: bold;
+  }
+
+  .project-detail-tech {
+    margin-bottom: 1.25rem;
+  }
+
+  .project-detail-tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  .project-detail-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .project-detail-github-btn,
+  .project-detail-demo-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.5rem;
+    background: rgba(15, 15, 30, 0.95);
+    border-radius: 0.5rem;
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+
+  .project-detail-github-btn {
+    border: 2px solid rgba(139, 92, 246, 0.4);
+  }
+
+  .project-detail-github-btn:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.6);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  }
+
+  .project-detail-demo-btn {
+    border: 2px solid rgba(16, 185, 129, 0.4);
+  }
+
+  .project-detail-demo-btn:hover {
+    background: rgba(16, 185, 129, 0.2);
+    border-color: rgba(16, 185, 129, 0.6);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  }
+
+  .project-detail-github-btn svg,
+  .project-detail-demo-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .project-detail-github-btn.hidden,
+  .project-detail-demo-btn.hidden {
+    display: none;
+  }
+
+  @media (max-width: 1024px) {
+    .project-detail-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .project-detail-image-section {
+      order: 1;
+    }
+
+    .project-detail-info-section {
+      order: 2;
+    }
+
+    .project-image-carousel {
+      max-width: 100%;
+      max-height: 400px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .project-detail-view {
+      padding: 1rem;
+      max-width: 95vw;
+    }
+
+    .project-detail-container {
+      padding: 1.5rem;
+      gap: 1.5rem;
+    }
+
+    .project-detail-title {
+      font-size: 1.5rem;
+    }
+
+    .project-detail-description {
+      font-size: 0.9rem;
+    }
+
+    .project-image-carousel {
+      max-height: 300px;
+    }
+
+    .project-carousel-nav {
+      padding: 8px;
+    }
+
+    .project-carousel-nav svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
   /* Modal de Certificados */
   .certification-modal {
     position: fixed;
@@ -1965,6 +2339,90 @@ function getTechIcon(tech: string): string | null {
 <script is:inline>
   let currentSlide = 0;
   let currentImages = [];
+  let currentProjectSlide = 0;
+  let currentProjectImages = [];
+
+  // Funciones para carrusel de proyectos (deben estar fuera de DOMContentLoaded)
+  function updateProjectSlide() {
+    const projectImageCarousel = document.getElementById('project-image-carousel');
+    const projectImageCurrent = document.getElementById('project-image-current');
+    const projectThumbnails = document.getElementById('project-thumbnails');
+    
+    if (!projectImageCarousel || currentProjectImages.length === 0) return;
+    
+    const images = projectImageCarousel.querySelectorAll('.project-carousel-image');
+    images.forEach((img, i) => {
+      img.style.display = i === currentProjectSlide ? 'block' : 'none';
+    });
+    
+    // Actualizar miniaturas activas
+    if (projectThumbnails) {
+      const thumbnails = projectThumbnails.querySelectorAll('.project-thumbnail');
+      thumbnails.forEach((thumb, i) => {
+        if (i === currentProjectSlide) {
+          thumb.classList.add('active');
+          // Scroll a la miniatura activa solo dentro del contenedor, sin afectar la página
+          const thumbLeft = thumb.offsetLeft;
+          const thumbWidth = thumb.offsetWidth;
+          const containerWidth = projectThumbnails.clientWidth;
+          
+          // Calcular la posición de scroll para centrar la miniatura
+          const targetScroll = thumbLeft - (containerWidth / 2) + (thumbWidth / 2);
+          
+          projectThumbnails.scrollTo({
+            left: targetScroll,
+            behavior: 'smooth'
+          });
+        } else {
+          thumb.classList.remove('active');
+        }
+      });
+    }
+    
+    if (projectImageCurrent) {
+      projectImageCurrent.textContent = currentProjectSlide + 1;
+    }
+  }
+  
+  function scrollThumbnails(direction, e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const projectThumbnails = document.getElementById('project-thumbnails');
+    if (!projectThumbnails) return;
+    
+    const scrollAmount = 120; // Ancho aproximado de una miniatura + gap
+    const currentScroll = projectThumbnails.scrollLeft;
+    const newScroll = direction === 'next' 
+      ? currentScroll + scrollAmount 
+      : currentScroll - scrollAmount;
+    
+    projectThumbnails.scrollTo({
+      left: newScroll,
+      behavior: 'smooth'
+    });
+  }
+  
+  function prevProjectSlide(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (currentProjectImages.length === 0) return;
+    currentProjectSlide = (currentProjectSlide - 1 + currentProjectImages.length) % currentProjectImages.length;
+    updateProjectSlide();
+  }
+  
+  function nextProjectSlide(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (currentProjectImages.length === 0) return;
+    currentProjectSlide = (currentProjectSlide + 1) % currentProjectImages.length;
+    updateProjectSlide();
+  }
 
   // Funciones del carrusel
   function closeCarousel() {
@@ -1973,7 +2431,15 @@ function getTechIcon(tech: string): string | null {
       // Agregar clase de cierre para animación suave
       modal.classList.add('closing');
       modal.classList.remove('active');
+      // Restaurar scroll de la página
+      const scrollY = document.body.style.top;
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
       
       setTimeout(function() {
         modal.classList.remove('closing');
@@ -1987,6 +2453,12 @@ function getTechIcon(tech: string): string | null {
             img.style.animation = '';
           });
         }
+        
+        // Resetear vistas
+        const projectView = document.getElementById('project-detail-view');
+        const carouselView = document.getElementById('carousel-view');
+        if (projectView) projectView.classList.add('hidden');
+        if (carouselView) carouselView.classList.remove('hidden');
         
         // Mostrar menú y selector de idioma después de que el modal se cierre
         const langSelector = document.getElementById('language-selector');
@@ -2097,55 +2569,264 @@ function getTechIcon(tech: string): string | null {
     }
   }
 
-  function openCarousel(title, images, isExperience = false) {
+  function openCarousel(title, images, isExperience = false, projectData = null) {
     const modal = document.getElementById('carousel-modal');
-    const titleEl = document.getElementById('carousel-title');
-    const imagesContainer = document.getElementById('carousel-images');
-    const currentIndicator = document.getElementById('carousel-current');
-    const totalIndicator = document.getElementById('carousel-total');
-    const indicatorContainer = document.getElementById('carousel-indicator');
-    const emptyMsg = document.getElementById('carousel-empty');
+    const projectView = document.getElementById('project-detail-view');
+    const carouselView = document.getElementById('carousel-view');
     
-    if (!modal || !titleEl || !imagesContainer || !emptyMsg) return;
+    if (!modal) return;
     
-    titleEl.textContent = title;
-    currentSlide = 0;
-    currentImages = images;
-    
-    // Agregar o quitar clase para experiencia laboral
-    if (isExperience) {
-      imagesContainer.classList.add('experience-carousel');
-    } else {
-      imagesContainer.classList.remove('experience-carousel');
-    }
-    
-    if (images.length === 0) {
-      imagesContainer.innerHTML = '';
-      if (indicatorContainer) indicatorContainer.style.display = 'none';
-      emptyMsg.classList.remove('hidden');
-      imagesContainer.removeAttribute('data-project');
-    } else {
-      emptyMsg.classList.add('hidden');
-      if (indicatorContainer) indicatorContainer.style.display = 'flex';
+    // Si es un proyecto (no experiencia) y tiene datos del proyecto, mostrar la nueva interfaz
+    if (!isExperience && projectData) {
+      // Ocultar vista de carrusel, mostrar vista de proyecto
+      if (carouselView) carouselView.classList.add('hidden');
+      if (projectView) projectView.classList.remove('hidden');
       
-      imagesContainer.setAttribute('data-project', title.toLowerCase());
+      // Llenar datos del proyecto
+      const projectTitle = document.getElementById('project-detail-title');
+      const projectDescription = document.getElementById('project-detail-description');
+      const projectHighlights = document.getElementById('project-detail-highlights-list');
+      const projectTech = document.getElementById('project-detail-tech-list');
+      const projectGithub = document.getElementById('project-detail-github');
+      const projectDemo = document.getElementById('project-detail-demo');
       
-      imagesContainer.innerHTML = images.map((src, i) => 
-        '<img src="' + src + '" alt="' + title + ' - Imagen ' + (i + 1) + '" class="' + (i === 0 ? 'fade-in' : '') + '" style="display: ' + (i === 0 ? 'block' : 'none') + '">'
-      ).join('');
+      if (projectTitle) projectTitle.textContent = projectData.title || title;
+      if (projectDescription) projectDescription.textContent = projectData.description || '';
       
-      imagesContainer.querySelectorAll('img').forEach(function(img) {
-        if (img.complete) {
-          detectImageOrientation(img, imagesContainer);
+      // Puntos destacados específicos por proyecto
+      if (projectHighlights) {
+        const projectId = projectData.id || '';
+        let highlights = [];
+        
+        // Mapeo de detalles destacados específicos por proyecto
+        const projectHighlightsMap = {
+          'assistvision': [
+            'Detección de textos, rostros, colores y billetes mexicanos en tiempo real.',
+            'Modelo de IA entrenado por nosotros mismos.'
+          ],
+          'trust': [
+            'Mecánicas de plataformas únicas con sistema de física personalizado.',
+            'Diseño de niveles progresivo y desafiante.',
+            'Experiencia de juego fluida y optimizada.'
+          ],
+          'memorydev': [
+            'Sincronización en tiempo real con Google Cloud.',
+            'Gestión de tareas, seguimiento de progreso y colaboración en equipo.',
+            'Interfaz intuitiva para desarrolladores.'
+          ],
+          'sussyai': [
+            'Integración con Gemini AI para conversaciones naturales.',
+            'Ejercicios interactivos y seguimiento de progreso en el aprendizaje.',
+            'Experiencia personalizada de aprendizaje de inglés.'
+          ],
+          'datasaints': [
+            'Diseño moderno y responsivo con animaciones fluidas.',
+            'Optimizado para SEO y rendimiento.',
+            'Interfaz profesional para servicios de desarrollo.'
+          ],
+          'eepediaz': [
+            'Sistema de autenticación con Google.',
+            'Foros de discusión, tutoriales paso a paso y comunidad activa.',
+            'Plataforma completa para jugadores de Call of Duty Zombies.'
+          ]
+        };
+        
+        // Si hay highlights específicos para este proyecto, usarlos
+        if (projectHighlightsMap[projectId]) {
+          highlights = projectHighlightsMap[projectId];
         } else {
-          img.onload = function() {
-            detectImageOrientation(this, imagesContainer);
-          };
+          // Si no hay highlights específicos, extraer de la descripción
+          const desc = projectData.description || '';
+          
+          // Intentar dividir por puntos o crear puntos destacados inteligentes
+          if (desc.includes('. ')) {
+            // Dividir por puntos y filtrar frases vacías
+            highlights = desc.split('. ').filter(h => h.trim().length > 0 && !h.match(/^[🏆🚧]/));
+          } else if (desc.includes(',')) {
+            // Dividir por comas si no hay puntos
+            highlights = desc.split(',').filter(h => h.trim().length > 0).slice(0, 3);
+          } else {
+            // Si no hay separadores, usar la descripción completa
+            highlights = [desc];
+          }
+          
+          // Limpiar y limitar a 3-4 puntos destacados
+          highlights = highlights
+            .map(h => h.trim().replace(/^[🏆🚧]/, '').trim())
+            .filter(h => h.length > 10)
+            .slice(0, 4);
+          
+          // Si no hay highlights válidos, usar la descripción completa
+          if (highlights.length === 0) {
+            highlights = [desc];
+          }
         }
-      });
+        
+        projectHighlights.innerHTML = highlights.map(h => `<li>${h}</li>`).join('');
+      }
       
-      if (currentIndicator) currentIndicator.textContent = '1';
-      if (totalIndicator) totalIndicator.textContent = images.length;
+      // Mostrar tecnologías con iconos (mismo estilo que en otros apartados)
+      if (projectTech && projectData.technologies) {
+        const techs = Array.isArray(projectData.technologies) ? projectData.technologies : JSON.parse(projectData.technologies);
+        projectTech.innerHTML = techs.map(tech => {
+          // Función getTechIcon está disponible globalmente
+          const techIconMap = {
+            'Flutter': '/tech-icons/flutter.png',
+            'Dart': '/tech-icons/flutter.png',
+            'TensorFlow Lite': '/tech-icons/python.svg',
+            'YOLO': '/tech-icons/python.svg',
+            'Unity': '/tech-icons/unity.png',
+            'C#': '/tech-icons/csharp.png',
+            'Google Cloud': '/tech-icons/google-cloud.png',
+            'Gemini AI': '/tech-icons/google-cloud.png',
+            'Google Sign-In': '/tech-icons/google-cloud.png',
+            'Firebase': '/tech-icons/firebase.png',
+            'React': '/tech-icons/react.svg',
+            'Vite': '/tech-icons/vite.png',
+            'Tailwind': '/tech-icons/tailwind.svg',
+            'JavaScript': '/tech-icons/javascript.svg',
+            'TypeScript': '/tech-icons/typescript.png',
+            'HTML': '/tech-icons/html.svg',
+            'CSS': '/tech-icons/css.png',
+            'PHP': '/tech-icons/php.png',
+            'MySQL': '/tech-icons/mysql.svg',
+            'AWS': '/tech-icons/aws.png',
+            'SQLite': '/tech-icons/sqlite.png'
+          };
+          const iconPath = techIconMap[tech] || null;
+          const iconHtml = iconPath ? `<img src="${iconPath}" alt="${tech}" class="w-3 h-3 object-contain">` : '';
+          return `<span class="text-[0.7rem] px-1.5 py-0.5 rounded-full bg-violet-500/10 text-violet-300 border border-violet-500/20 inline-flex items-center gap-1">${iconHtml}${tech}</span>`;
+        }).join('');
+      }
+      
+      // Configurar carrusel de imágenes del proyecto
+      const projectImageCarousel = document.getElementById('project-image-carousel');
+      const projectImageCurrent = document.getElementById('project-image-current');
+      const projectImageTotal = document.getElementById('project-image-total');
+      const projectImageIndicator = document.getElementById('project-image-indicator');
+      const projectThumbnails = document.getElementById('project-thumbnails');
+      const projectThumbnailsContainer = document.getElementById('project-thumbnails-container');
+      
+      if (images && images.length > 0) {
+        currentProjectImages = images;
+        currentProjectSlide = 0;
+        
+        if (projectImageCarousel) {
+          projectImageCarousel.innerHTML = images.map((src, i) => 
+            `<img src="${src}" alt="${title} - Imagen ${i + 1}" class="project-carousel-image" style="display: ${i === 0 ? 'block' : 'none'}">`
+          ).join('');
+        }
+        
+        // Crear miniaturas
+        if (projectThumbnails) {
+          projectThumbnails.innerHTML = images.map((src, i) => 
+            `<div class="project-thumbnail ${i === 0 ? 'active' : ''}" data-index="${i}">
+              <img src="${src}" alt="${title} - Miniatura ${i + 1}" class="project-thumbnail-image">
+            </div>`
+          ).join('');
+          
+          // Agregar event listeners a las miniaturas
+          projectThumbnails.querySelectorAll('.project-thumbnail').forEach((thumb, i) => {
+            // Usar un solo handler para click y touch
+            const handleThumbClick = function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              currentProjectSlide = i;
+              updateProjectSlide();
+            };
+            
+            thumb.addEventListener('click', handleThumbClick);
+            // Para touch, usar touchend en lugar de touchstart para evitar el warning
+            thumb.addEventListener('touchend', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              handleThumbClick(e);
+            });
+          });
+        }
+        
+        if (projectImageCurrent) projectImageCurrent.textContent = '1';
+        if (projectImageTotal) projectImageTotal.textContent = images.length;
+        if (projectImageIndicator) projectImageIndicator.style.display = 'flex';
+        if (projectThumbnailsContainer) projectThumbnailsContainer.style.display = 'flex';
+      } else {
+        if (projectImageCarousel) projectImageCarousel.innerHTML = '';
+        if (projectImageIndicator) projectImageIndicator.style.display = 'none';
+        if (projectThumbnailsContainer) projectThumbnailsContainer.style.display = 'none';
+      }
+      
+      // Mostrar botón de GitHub si existe
+      if (projectGithub) {
+        if (projectData.github) {
+          projectGithub.href = projectData.github;
+          projectGithub.classList.remove('hidden');
+        } else {
+          projectGithub.classList.add('hidden');
+        }
+      }
+      
+      // Mostrar botón de Demo si existe
+      if (projectDemo) {
+        if (projectData.url) {
+          projectDemo.href = projectData.url;
+          projectDemo.classList.remove('hidden');
+        } else {
+          projectDemo.classList.add('hidden');
+        }
+      }
+    } else {
+      // Mostrar vista de carrusel original para experiencia laboral
+      if (projectView) projectView.classList.add('hidden');
+      if (carouselView) carouselView.classList.remove('hidden');
+      
+      const titleEl = document.getElementById('carousel-title');
+      const imagesContainer = document.getElementById('carousel-images');
+      const currentIndicator = document.getElementById('carousel-current');
+      const totalIndicator = document.getElementById('carousel-total');
+      const indicatorContainer = document.getElementById('carousel-indicator');
+      const emptyMsg = document.getElementById('carousel-empty');
+      
+      if (!titleEl || !imagesContainer || !emptyMsg) return;
+      
+      titleEl.textContent = title;
+      currentSlide = 0;
+      currentImages = images;
+      
+      // Agregar o quitar clase para experiencia laboral
+      if (isExperience) {
+        imagesContainer.classList.add('experience-carousel');
+      } else {
+        imagesContainer.classList.remove('experience-carousel');
+      }
+      
+      if (images.length === 0) {
+        imagesContainer.innerHTML = '';
+        if (indicatorContainer) indicatorContainer.style.display = 'none';
+        emptyMsg.classList.remove('hidden');
+        imagesContainer.removeAttribute('data-project');
+      } else {
+        emptyMsg.classList.add('hidden');
+        if (indicatorContainer) indicatorContainer.style.display = 'flex';
+        
+        imagesContainer.setAttribute('data-project', title.toLowerCase());
+        
+        imagesContainer.innerHTML = images.map((src, i) => 
+          '<img src="' + src + '" alt="' + title + ' - Imagen ' + (i + 1) + '" class="' + (i === 0 ? 'fade-in' : '') + '" style="display: ' + (i === 0 ? 'block' : 'none') + '">'
+        ).join('');
+        
+        imagesContainer.querySelectorAll('img').forEach(function(img) {
+          if (img.complete) {
+            detectImageOrientation(img, imagesContainer);
+          } else {
+            img.onload = function() {
+              detectImageOrientation(this, imagesContainer);
+            };
+          }
+        });
+        
+        if (currentIndicator) currentIndicator.textContent = '1';
+        if (totalIndicator) totalIndicator.textContent = images.length;
+      }
     }
     
     // Ocultar menú y selector de idioma ANTES de mostrar el modal
@@ -2164,7 +2845,12 @@ function getTechIcon(tech: string): string | null {
     }
     
     modal.classList.remove('hidden');
+    // Prevenir scroll de la página
+    const scrollY = window.scrollY;
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = `-${scrollY}px`;
     requestAnimationFrame(function() {
       requestAnimationFrame(function() {
         modal.classList.add('active');
@@ -2184,17 +2870,35 @@ function getTechIcon(tech: string): string | null {
           projectCard.classList.remove('clicking');
         }, 600);
         
+        const projectId = projectCard.dataset.projectId || '';
         const title = projectCard.dataset.projectTitle || '';
+        const description = projectCard.dataset.projectDescription || '';
+        const technologiesJson = projectCard.dataset.projectTechnologies || '[]';
+        const github = projectCard.dataset.projectGithub || '';
+        const url = projectCard.dataset.projectUrl || '';
         const imagesJson = projectCard.dataset.projectImages || '[]';
         
         let images = [];
+        let technologies = [];
         try {
           images = JSON.parse(imagesJson);
+          technologies = JSON.parse(technologiesJson);
         } catch (err) {
           images = [];
+          technologies = [];
         }
         
-        openCarousel(title, images);
+        // Pasar datos del proyecto
+        const projectData = {
+          id: projectId,
+          title: title,
+          description: description,
+          technologies: technologies,
+          github: github,
+          url: url
+        };
+        
+        openCarousel(title, images, false, projectData);
       });
     });
 
@@ -2333,14 +3037,47 @@ function getTechIcon(tech: string): string | null {
     document.getElementById('carousel-close-btn').addEventListener('click', closeCarousel);
     document.getElementById('carousel-prev-btn').addEventListener('click', prevSlide);
     document.getElementById('carousel-next-btn').addEventListener('click', nextSlide);
+    
+    // Event listeners para botones del carrusel de proyectos (las funciones ya están definidas arriba)
+    const projectPrevBtn = document.getElementById('project-prev-btn');
+    const projectNextBtn = document.getElementById('project-next-btn');
+    const projectThumbnailsPrevBtn = document.getElementById('project-thumbnails-prev');
+    const projectThumbnailsNextBtn = document.getElementById('project-thumbnails-next');
+    
+    if (projectPrevBtn) {
+      projectPrevBtn.addEventListener('click', prevProjectSlide);
+    }
+    if (projectNextBtn) {
+      projectNextBtn.addEventListener('click', nextProjectSlide);
+    }
+    if (projectThumbnailsPrevBtn) {
+      projectThumbnailsPrevBtn.addEventListener('click', (e) => scrollThumbnails('prev', e));
+    }
+    if (projectThumbnailsNextBtn) {
+      projectThumbnailsNextBtn.addEventListener('click', (e) => scrollThumbnails('next', e));
+    }
+    
+    // Las funciones updateProjectSlide, scrollThumbnails, prevProjectSlide y nextProjectSlide
+    // ya están definidas fuera de este bloque DOMContentLoaded, por lo que no se duplican aquí
 
     document.addEventListener('keydown', function(e) {
       const modal = document.getElementById('carousel-modal');
       if (modal.classList.contains('hidden')) return;
       
+      const projectView = document.getElementById('project-detail-view');
+      const isProjectView = projectView && !projectView.classList.contains('hidden');
+      
       if (e.key === 'Escape') closeCarousel();
-      if (e.key === 'ArrowLeft') prevSlide();
-      if (e.key === 'ArrowRight') nextSlide();
+      
+      if (isProjectView) {
+        // Navegación para vista de proyecto
+        if (e.key === 'ArrowLeft') prevProjectSlide();
+        if (e.key === 'ArrowRight') nextProjectSlide();
+      } else {
+        // Navegación para vista de carrusel (experiencia)
+        if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+      }
     });
 
     // Translations
