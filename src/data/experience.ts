@@ -1,5 +1,6 @@
 import type { Props as ExperienceProp } from "../components/experience/props";
 
+// Experiencia laboral
 export const EXPERIENCE: (ExperienceProp & { id: string })[] = [
   {
     id: "vector",
@@ -34,16 +35,20 @@ export const EXPERIENCE: (ExperienceProp & { id: string })[] = [
       "AWS",
     ],
     images: [
-      "/projects/petravia/1-petravia.jpeg",
-      "/projects/petravia/2-petravia.jpeg",
-      "/projects/petravia/3-petravia.jpeg",
-      "/projects/petravia/4-petravia.jpeg",
-      "/projects/petravia/5-petravia.jpeg",
-      "/projects/petravia/6-petravia.jpeg",
-      "/projects/petravia/7-petravia.jpeg",
-      "/projects/petravia/8-petravia.jpeg",
+      "/projects/petravia/1-petravia.png",
+      "/projects/petravia/2-petravia.png",
+      "/projects/petravia/3-petravia.png",
+      "/projects/petravia/4-petravia.png",
+      "/projects/petravia/5-petravia.png",
+      "/projects/petravia/6-petravia.png",
+      "/projects/petravia/7-petravia.png",
+      "/projects/petravia/8-petravia.png",
     ] as string[],
   },
+];
+
+// Proyectos Freelance
+export const FREELANCE: (ExperienceProp & { id: string })[] = [
   {
     id: "vector-evaluaciones",
     dates: "Mayo 2025",
@@ -61,18 +66,18 @@ export const EXPERIENCE: (ExperienceProp & { id: string })[] = [
       "Scrum",
     ],
     images: [
-      "/projects/evaluaciones/1-evaluaciones.jpeg",
-      "/projects/evaluaciones/2-evaluaciones.jpeg",
-      "/projects/evaluaciones/3-evaluaciones.jpeg",
-      "/projects/evaluaciones/4-evaluaciones.jpeg",
-      "/projects/evaluaciones/5-evaluaciones.jpeg",
-      "/projects/evaluaciones/6-evaluaciones.jpeg",
+      "/projects/evaluaciones/1-evaluaciones.png",
+      "/projects/evaluaciones/2-evaluaciones.png",
+      "/projects/evaluaciones/3-evaluaciones.png",
+      "/projects/evaluaciones/4-evaluaciones.png",
+      "/projects/evaluaciones/5-evaluaciones.png",
+      "/projects/evaluaciones/6-evaluaciones.png",
     ] as string[],
   },
   {
     id: "makarenko",
     dates: "2023 — 2025",
-    title: "Desarrollador Web – Freelance",
+    title: "Desarrollador Web - Sistema de administración",
     company: "MAKARENKO (Remoto)",
     description:
       "Desarrollo de sistemas web para registro de desayunos escolares. Mantenimiento y soporte continuo.",
@@ -87,40 +92,13 @@ export const EXPERIENCE: (ExperienceProp & { id: string })[] = [
       "AWS",
     ],
     images: [
-      "/projects/makarenko/1-makarenko.jpeg",
-      "/projects/makarenko/2-makarenko.jpeg",
-      "/projects/makarenko/3-makarenko.jpeg",
-      "/projects/makarenko/4-makarenko.jpeg",
-      "/projects/makarenko/5-makarenko.jpeg",
-      "/projects/makarenko/6-makarenko.jpeg",
-      "/projects/makarenko/7-makarenko.jpeg",
-      "/projects/makarenko/8-makarenko.jpeg",
-    ] as string[],
-  },
-  {
-    id: "imss",
-    dates: "Febrero 2024 — Junio 2024",
-    title: "Desarrollador Web (Servicio Social)",
-    company: "IMSS",
-    description:
-      "Servicio social. Desarrollo de sistema web para gestión de archivos y lectura de documentos Excel para documentos.",
-    technologies: [
-      "PHP",
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Bootstrap",
-      "MySQL",
-      "AWS",
-      "Laragon",
-    ],
-    images: [
-      "/projects/imss/1-imss.jpeg",
-      "/projects/imss/2-imss.jpeg",
-      "/projects/imss/3-imss.jpeg",
-      "/projects/imss/4-imss.jpeg",
-      "/projects/imss/5-imss.jpeg",
-      "/projects/imss/6-imss.jpeg",
+      "/projects/makarenko/1-makarenko.png",
+      "/projects/makarenko/2-makarenko.png",
+      "/projects/makarenko/3-makarenko.png",
+      "/projects/makarenko/4-makarenko.png",
+      "/projects/makarenko/5-makarenko.png",
+      "/projects/makarenko/6-makarenko.png",
+      "/projects/makarenko/7-makarenko.png",
     ] as string[],
   },
   {
@@ -212,7 +190,7 @@ export const PROJECTS = [
   {
     id: "datasaints",
     title: "Data Saints",
-    description: "Página web para ofrecer servicios de desarrollo. 🚧 En desarrollo",
+    description: "Página web para ofrecer servicios de desarrollo. --En desarrollo-- ",
     technologies: ["React", "Vite", "Tailwind", "JavaScript"],
     url: "https://data-saints.vercel.app/",
     github: "https://github.com/Themanzato/DataSaints",
