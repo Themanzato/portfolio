@@ -153,7 +153,7 @@ function getTechIcon(tech: string): string | null {
             class="flex lg:items-start gap-4 flex-col lg:flex-row items-center text-center lg:text-left"
           >
             <!-- Avatar con imagen de perfil -->
-            <div class="avatar-container relative">
+            <div class="avatar-container relative hero-fade-in">
               <div id="avatar-wrapper" class="w-28 h-28 rounded-full overflow-hidden relative z-10 avatar-glow cursor-pointer transition-all duration-300">
                 <img 
                   src="/images/profile.jpg" 
@@ -171,19 +171,19 @@ function getTechIcon(tech: string): string | null {
             <div>
               <a
                 href="/"
-                class="text-4xl lg:text-5xl block font-bold tracking-tight"
+                class="text-4xl lg:text-5xl block font-bold tracking-tight hero-fade-in"
               >
                 <h1 class="cosmic-title">Mario Alberto Arroyo Utrera</h1>
               </a>
-              <h2 class="mt-3 text-sm lg:text-lg font-medium text-violet-300/80 tracking-widest uppercase" data-i18n="title">
+              <h2 class="mt-3 text-sm lg:text-lg font-medium text-violet-300/80 tracking-widest uppercase hero-fade-in" data-i18n="title">
                 Ingeniero en Sistemas Computacionales
               </h2>
-              <p class="text-xs lg:text-sm text-slate-400 mt-1 flex items-center justify-center lg:justify-start gap-2">
+              <p class="text-xs lg:text-sm text-slate-400 mt-1 flex items-center justify-center lg:justify-start gap-2 hero-fade-in">
                 <span class="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
                 Actopan, Veracruz, México
               </p>
 
-              <div class="mt-4 space-y-2 text-sm">
+              <div class="mt-4 space-y-2 text-sm hero-fade-in">
                 <a 
                   href="mailto:Mario.arroyout@gmail.com" 
                   class="flex items-center justify-center lg:justify-start gap-2 text-slate-400 hover:text-violet-300 transition-colors"
@@ -198,13 +198,13 @@ function getTechIcon(tech: string): string | null {
               <button
                 data-ccursor
                 id="contact-btn"
-                class="contact-btn inline-flex rounded-lg px-5 py-3 items-center text-white font-semibold group text-sm gap-x-3 mt-4"
+                class="contact-btn inline-flex rounded-lg px-5 py-3 items-center text-white font-semibold group text-sm gap-x-3 mt-4 hero-fade-in"
               >
                 <span data-i18n="contact">Contáctame</span>
                 <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
               </button>
 
-              <div class="mt-3 flex flex-wrap gap-2">
+              <div class="mt-3 flex flex-wrap gap-2 hero-fade-in">
                 <a
                   data-ccursor
                   class="cv-link-small inline-flex items-center text-xs font-medium group px-3 py-1.5 rounded-lg"
@@ -238,7 +238,7 @@ function getTechIcon(tech: string): string | null {
           {
             SOCIALS.length && (
               <ul
-                class="mt-8 flex items-center justify-center lg:justify-normal gap-x-6"
+                class="mt-8 flex items-center justify-center lg:justify-normal gap-x-6 hero-fade-in"
                 aria-label="Redes sociales"
               >
                 {SOCIALS.map((social) => (
@@ -263,7 +263,7 @@ function getTechIcon(tech: string): string | null {
         <main id="content" class="pt-24 lg:w-1/2 lg:py-24">
           <section
             id="about"
-            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24 hero-fade-in"
             aria-label="Sobre mí"
           >
             <h2 class="section-title">
@@ -287,7 +287,7 @@ function getTechIcon(tech: string): string | null {
 
           <section
             id="experience"
-            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24 hero-fade-in"
             aria-label="Experiencia laboral"
           >
             <h2 class="section-title">
@@ -305,7 +305,7 @@ function getTechIcon(tech: string): string | null {
 
           <section
             id="freelance"
-            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24 hero-fade-in"
             aria-label="Proyectos Freelance"
           >
             <h2 class="section-title">
@@ -323,7 +323,7 @@ function getTechIcon(tech: string): string | null {
 
           <section
             id="projects"
-            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24 hero-fade-in"
             aria-label="Proyectos personales destacados"
           >
             <h2 class="section-title">
@@ -417,7 +417,7 @@ function getTechIcon(tech: string): string | null {
 
           <section
             id="skills"
-            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24 hero-fade-in"
             aria-label="Tecnologías"
           >
             <h2 class="section-title">
@@ -708,7 +708,7 @@ function getTechIcon(tech: string): string | null {
 
           <section
             id="education"
-            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24 hero-fade-in"
             aria-label="Educación"
           >
             <h2 class="section-title">
@@ -740,7 +740,7 @@ function getTechIcon(tech: string): string | null {
 
           <section
             id="certifications"
-            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24 hero-fade-in"
             aria-label="Certificaciones"
           >
             <h2 class="section-title">
@@ -793,7 +793,7 @@ function getTechIcon(tech: string): string | null {
 
           <section
             id="languages"
-            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24 hero-fade-in"
             aria-label="Idiomas"
           >
             <h2 class="section-title">
@@ -1258,6 +1258,39 @@ function getTechIcon(tech: string): string | null {
   .hero {
     overflow-y: visible;
     overflow-x: clip;
+  }
+
+  /* Hero fade-in animations */
+  .hero-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+  }
+
+  .hero-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-fade-in {
+      opacity: 1;
+      transform: translateY(0);
+      transition: none;
+    }
+  }
+
+  @keyframes heroFadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   /* Language Selector */
@@ -4223,6 +4256,52 @@ function getTechIcon(tech: string): string | null {
       }
     });
     setLanguage(currentLang);
+
+    // Hero fade-in animations
+    function initHeroAnimations() {
+      const heroElements = document.querySelectorAll('.hero-fade-in');
+      if (heroElements.length === 0) return;
+
+      // Check if user prefers reduced motion
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        heroElements.forEach(el => el.classList.add('visible'));
+        return;
+      }
+
+      // Separate hero left elements from main content sections
+      const heroLeftElements = [];
+      const mainSections = [];
+      
+      heroElements.forEach((el) => {
+        // Check if element is in the header (left side) or in main (right side)
+        const isInHeader = el.closest('header') !== null;
+        if (isInHeader) {
+          heroLeftElements.push(el);
+        } else {
+          mainSections.push(el);
+        }
+      });
+
+      // Animate hero left elements first (200ms initial delay, 100ms between each)
+      heroLeftElements.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, index * 100 + 200);
+      });
+
+      // Animate main sections after hero left elements finish
+      // Start after hero left elements (approximately 200 + (heroLeftElements.length * 100) + 300ms gap)
+      const mainStartDelay = 200 + (heroLeftElements.length * 100) + 300;
+      mainSections.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, mainStartDelay + (index * 120)); // 120ms between each section for smoother effect
+      });
+    }
+
+    // Initialize hero animations
+    initHeroAnimations();
 
     // Navigation Menu (Desktop y Mobile)
     const navLinks = document.querySelectorAll('.nav-link, .nav-link-mobile');
