@@ -140,6 +140,24 @@ export const PROJECTS = [
     ] as string[],
   },
   {
+    id:"volleymetrics",
+    title: "VolleyMetrics",
+    description: "App móvil para medir el rendimiento de los jugadores de voleibol.",
+    technologies: ["React", "Tailwind", "JavaScript", "Vite", "TypeScript"],
+    url: "https://volley-metrcis.vercel.app/",
+    github: "https://github.com/Themanzato/VolleyMetrics",
+    images: [
+      "/projects/volleyMetrics/volleymetricts-1.png",
+      "/projects/volleyMetrics/volleymetricts-2.png",
+      "/projects/volleyMetrics/volleymetricts-3.png",
+      "/projects/volleyMetrics/volleymetricts-4.png",
+      "/projects/volleyMetrics/volleymetricts-5.png",
+      "/projects/volleyMetrics/volleymetricts-6.png",
+      "/projects/volleyMetrics/volleymetricts-7.png",
+      "/projects/volleyMetrics/volleymetricts-8.png",
+    ] as string[],
+  },
+  {
     id: "trust",
     title: "Trust",
     description: "Videojuego indie de plataformas con mecánicas únicas y diseño de niveles desafiante.",
@@ -214,4 +232,5 @@ export const PROJECTS = [
       "/projects/eepediaz/5-eepediaz.png",
     ] as string[],
   },
+  
 ];
